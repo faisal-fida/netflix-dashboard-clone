@@ -25,7 +25,7 @@ exports.mainRequests = {
   discoverThriller: `discover/movie?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.thriller}&page=${page}`,
   discoverAction: `discover/movie?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.action}&page=${page}`,
   discoverAdventure: `discover/movie?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.thriller}&page=${page}`,
-  trending: `trending/all/day?api_key=631d59e924809aae36b7176af2968d58`,
+  trending: `trending/all/day?api_key=${process.env.REACT_APP_MOVIE_API}`,
 };
 
 exports.tvRequests = {
@@ -39,7 +39,7 @@ exports.tvRequests = {
   discoverReality: `discover/tv?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.reality}`,
   discoverSciFi: `discover/tv?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.sciFiAndFantasy}&page=${page}`,
   discoverDocumentary: `discover/tv?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.documentary}`,
-  trending: `trending/tv/day?api_key=631d59e924809aae36b7176af2968d58`,
+  trending: `trending/tv/day?api_key=${process.env.REACT_APP_MOVIE_API}`,
 };
 
 exports.movieRequests = {
@@ -50,5 +50,5 @@ exports.movieRequests = {
   discoverThriller: `discover/movie?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.thriller}`,
   discoverAction: `discover/movie?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.action}`,
   discoverAdventure: `discover/movie?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.thriller}`,
-  trending: `trending/movie/day?api_key=631d59e924809aae36b7176af2968d58`,
+  trending: `trending/movie/day?api_key=${process.env.REACT_APP_MOVIE_API}`,
 };
