@@ -1,0 +1,95 @@
+.attention {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+
+  &__overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    background: linear-gradient(transparent 70%, #141414);
+  }
+
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    &--info {
+      position: absolute;
+      bottom: 25%;
+      left: 5rem;
+      z-index: 15;
+      width: 30%;
+      padding: 2rem 0;
+
+      & h2 {
+        color: white;
+        font-size: 4rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      &-desc {
+        font-size: 1.8rem;
+        color: #fff;
+        line-height: 1.15;
+        margin-bottom: 2rem;
+        max-height: 12.5rem;
+        overflow: hidden;
+      }
+
+      &-btn {
+        display: flex;
+
+        & button {
+          padding: 1rem 2.5rem;
+          font-size: 1.8rem;
+          border-radius: 0.5rem;
+          border: none;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+
+          & i {
+            margin-right: 0.75rem;
+            font-size: 2.2rem;
+          }
+
+          &:not(:last-child) {
+            margin-right: 1.25rem;
+          }
+        }
+      }
+    }
+
+    & img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    & iframe {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: -20vh;
+      height: 130%;
+      width: 100%;
+      border: none;
+      z-index: -1;
+    }
+  }
+}
+
+.more-info {
+  background: rgba(161, 161, 161, 0.65);
+  color: white;
+}

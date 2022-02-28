@@ -1,0 +1,26 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.6rem;
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: #141414;
+  font-family: "League Spartan", sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.main {
+  margin-top: -20vh;
+  z-index: 15;
+  position: relative;
+}
