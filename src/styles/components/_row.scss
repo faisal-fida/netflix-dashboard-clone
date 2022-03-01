@@ -1,5 +1,11 @@
 .row {
   width: 100%;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent;
+  }
 
   & h2 {
     margin-left: 5rem;
@@ -12,15 +18,31 @@
     display: flex;
     height: 40vh;
     list-style-type: none;
-    overflow: scroll;
+    overflow: hidden;
+    width: min-content;
+    position: relative;
 
     &::-webkit-scrollbar {
       width: 0; /* Remove scrollbar space */
       background: transparent;
+      display: none;
     }
 
     &--item {
       height: 100%;
+      overflow: hidden;
+      position: relative;
+      width: min-content;
+
+      &-img {
+        height: 100%;
+        width: 100%;
+
+        & img {
+          height: 100%;
+          border-radius: 0.5rem;
+        }
+      }
 
       &:first-child {
         margin-left: 5rem;
@@ -32,11 +54,6 @@
 
       &:not(:last-child) {
         margin-right: 0.75rem;
-      }
-
-      & img {
-        height: 100%;
-        border-radius: 0.5rem;
       }
     }
   }

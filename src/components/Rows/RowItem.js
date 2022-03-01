@@ -15,10 +15,12 @@ const RowItem = (props) => {
 
   return (
     <li className="row__list--item" onClick={getDetailsHandler}>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${props.item.poster_path}`}
-        alt={props.item.name}
-      />
+      <div className="row__list--item-img">
+        <img
+          src={`https://image.tmdb.org/t/p/w500${props.item.poster_path}`}
+          alt={props.item.name}
+        />
+      </div>
     </li>
   );
 };
