@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import Attention from "../Attention";
 import Row from "../../../Rows/Row";
 import { mainRequests } from "../../../../utilities/requests";
+import Top10Row from "../../../Rows/Top10Row";
 
 const Main = () => {
   const [fade, setFade] = useState(false);
@@ -16,6 +17,10 @@ const Main = () => {
     <Fragment>
       <Attention fade={fade} setToggled={change} />
       <main className="main">
+        <Top10Row
+          title="Top 10 in the U.S. Today"
+          endpoint={mainRequests.top10}
+        />
         <Row
           title="Netflix Originals"
           endpoint={mainRequests.netflixOriginals}

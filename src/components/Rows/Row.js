@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import RowItem from "./RowItem";
 import axios from "../../utilities/axios";
 
@@ -18,13 +18,15 @@ const Row = (props) => {
   }, [props.endpoint]);
 
   return (
-    <section className="row">
-      <h2>{props.title}</h2>
-      <ul className="row__list">
-        {titles.length > 0 &&
-          titles.map((title) => <RowItem key={title.id} item={title} />)}
-      </ul>
-    </section>
+    <Fragment>
+      <h2 className="row__heading">{props.title}</h2>
+      <section className="row">
+        <ul className="row__list">
+          {titles.length > 0 &&
+            titles.map((title) => <RowItem key={title.id} item={title} />)}
+        </ul>
+      </section>
+    </Fragment>
   );
 };
 

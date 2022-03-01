@@ -1,5 +1,5 @@
 .attention {
-  min-height: 100vh;
+  min-height: 115vh;
   width: 100%;
   position: relative;
 
@@ -10,7 +10,7 @@
     top: 0;
     right: 0;
     z-index: 10;
-    background: linear-gradient(transparent 70%, #141414);
+    background: linear-gradient(transparent 80%, #141414);
   }
 
   &__backdrop {
@@ -23,7 +23,7 @@
 
     &--info {
       position: absolute;
-      bottom: 25%;
+      bottom: 30%;
       left: 5rem;
       z-index: 15;
       width: 30%;
@@ -81,10 +81,12 @@
       top: 0;
       right: 0;
       margin-top: -20vh;
-      height: 130%;
-      width: 100%;
+      margin-right: -10%;
+      height: 120%;
+      width: 120%;
       border: none;
       z-index: -1;
+      border: 2px solid green;
     }
   }
 }

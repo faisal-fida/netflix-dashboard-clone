@@ -18,6 +18,8 @@ console.log(page);
 // const page = 3;
 
 exports.mainRequests = {
+  top10: `trending/all/day?api_key=${process.env.REACT_APP_MOVIE_API}`,
+  trending: `trending/all/day?api_key=${process.env.REACT_APP_MOVIE_API}&page=2`,
   netflixOriginals: `discover/tv?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_networks=213&page=${page}`,
   discoverPopular: `movie/popular?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=1&with_networks=213`,
   discoverHorror: `discover/movie?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.horror}&page=${page}`,
@@ -25,7 +27,6 @@ exports.mainRequests = {
   discoverThriller: `discover/movie?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.thriller}&page=${page}`,
   discoverAction: `discover/movie?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.action}&page=${page}`,
   discoverAdventure: `discover/movie?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&with_genres=${genres.thriller}&page=${page}`,
-  trending: `trending/all/day?api_key=${process.env.REACT_APP_MOVIE_API}`,
 };
 
 exports.tvRequests = {
