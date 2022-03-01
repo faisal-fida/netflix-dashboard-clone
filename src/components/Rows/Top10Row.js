@@ -3,7 +3,6 @@ import axios from "../../utilities/axios";
 
 const Top10Row = (props) => {
   const [titles, setTitles] = useState([]);
-  console.log("top 10", titles);
 
   useEffect(() => {
     const getGenre = async () => {
@@ -25,7 +24,6 @@ const Top10Row = (props) => {
           {titles.length > 0 &&
             titles.map((title, i) => {
               if (i < 10) {
-                console.log(i);
                 return (
                   <li
                     key={title.id}
@@ -42,6 +40,7 @@ const Top10Row = (props) => {
                     </div>
                   </li>
                 );
+                return;
               }
             })}
         </ul>

@@ -14,8 +14,6 @@ const genres = {
 };
 
 const page = Math.ceil(Math.random() * 3);
-console.log(page);
-// const page = 3;
 
 exports.mainRequests = {
   top10: `trending/all/day?api_key=${process.env.REACT_APP_MOVIE_API}`,
