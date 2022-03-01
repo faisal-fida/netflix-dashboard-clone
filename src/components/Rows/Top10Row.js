@@ -40,8 +40,8 @@ const Top10Row = (props) => {
                     </div>
                   </li>
                 );
-                return;
               }
+              return null;
             })}
         </ul>
       </section>
