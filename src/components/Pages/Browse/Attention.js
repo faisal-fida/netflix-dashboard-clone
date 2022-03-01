@@ -46,7 +46,7 @@ const Attention = (props) => {
       }
     };
     getMain();
-  }, []);
+  }, [request.trending]);
 
   let play;
   if (trailer) {
