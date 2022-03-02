@@ -83,15 +83,12 @@ const Attention = (props) => {
             {trailer && trailerVisible && (
               <animated.div style={{ opacity: x }}>
                 <img
+                  className="attention__backdrop--img"
                   src={`https://image.tmdb.org/t/p/original${attentionItem.backdrop_path}`}
                   alt={`${attentionItem.name} backdrop`}
                 />
               </animated.div>
             )}
-            <img
-              src={`https://image.tmdb.org/t/p/original${attentionItem.backdrop_path}`}
-              alt={`${attentionItem.name} backdrop`}
-            />
             {trailer && trailerVisible && (
               <iframe
                 allow="autoplay"
@@ -99,6 +96,16 @@ const Attention = (props) => {
                 src={`https://www.youtube.com/embed/${play}?autoplay=1&mute=1&end`}
               ></iframe>
             )}
+            <img
+              className="attention__backdrop--img"
+              src={`https://image.tmdb.org/t/p/original${attentionItem.backdrop_path}`}
+              alt={`${attentionItem.name} backdrop`}
+            />
+            <img
+              className="attention__backdrop--img-mobile"
+              src={`https://image.tmdb.org/t/p/original${attentionItem.poster_path}`}
+              alt={`${attentionItem.name} backdrop`}
+            />
           </div>
         </section>
       )}

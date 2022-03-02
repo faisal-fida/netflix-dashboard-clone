@@ -17,10 +17,18 @@ body {
 
 html {
   font-size: 62.5%;
+
+  @include respond(phone) {
+    font-size: 50%;
+  }
 }
 
 .main {
   margin-top: -30vh;
   z-index: 15;
   position: relative;
+
+  @include respond(phone) {
+    margin-top: 3rem;
+  }
 }

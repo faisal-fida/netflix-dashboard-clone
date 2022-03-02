@@ -1,0 +1,66 @@
+.nav__mobile {
+  display: none;
+
+  @include respond(phone) {
+    height: 12vh;
+    width: 100%;
+    z-index: 25;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.1s ease;
+
+    &--main {
+      height: 70%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      &-logo {
+        height: 100%;
+
+        & img {
+          height: 100%;
+        }
+      }
+    }
+
+    &--user {
+      height: 3.5rem;
+      width: 3.5rem;
+      border-radius: 2.5px;
+      overflow: hidden;
+      margin-right: 1.5rem;
+
+      & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &--links {
+      height: 30%;
+      width: 100%;
+      padding: 0 8rem;
+
+      & > * {
+        display: flex;
+        justify-content: space-between;
+        // align-items: center;
+        height: 100%;
+      }
+
+      @include navLinks;
+
+      & a {
+        font-size: 1.8rem !important;
+      }
+    }
+  }
+}

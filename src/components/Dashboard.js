@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { itemActions } from "../store/item";
+import GoToTop from "../helpers/goToTop";
 
 const Dashboard = (props) => {
   const dispatch = useDispatch();
@@ -9,7 +10,12 @@ const Dashboard = (props) => {
     dispatch(itemActions.setYOffset(window.pageYOffset));
   });
 
-  return <div className="dashboard">{props.children}</div>;
+  return (
+    <Fragment>
+      <div className="dashboard">{props.children}</div>
+      <GoToTop />
+    </Fragment>
+  );
 };
 
 export default Dashboard;

@@ -7,6 +7,11 @@
     padding: 2rem 0 1rem 0;
     color: white;
     font-size: 2rem;
+
+    @include respond(phone) {
+      margin-left: 2rem;
+      font-size: 2.6rem;
+    }
   }
 
   &::-webkit-scrollbar {
@@ -21,6 +26,10 @@
     overflow: hidden;
     width: min-content;
     position: relative;
+
+    @include respond(phone) {
+      height: 30vh;
+    }
 
     &::-webkit-scrollbar {
       width: 0; /* Remove scrollbar space */
@@ -38,13 +47,13 @@
       &-top {
         display: flex;
         align-items: flex-end;
-        margin-right: -2rem;
+        margin-right: -1.5rem;
         z-index: 20;
 
         & p {
           color: white;
           line-height: 0.5;
-          font-size: 22rem;
+          font-size: 20rem;
           color: black;
           font-weight: bold;
           letter-spacing: -1.5rem;
@@ -55,7 +64,11 @@
 
       &-container {
         &:not(:first-child) {
-          margin-left: -1.5rem;
+          margin-left: -2rem;
+
+          @include respond(phone) {
+            margin-left: -2.25rem;
+          }
         }
       }
 
@@ -71,14 +84,26 @@
 
       &:first-child {
         margin-left: 5rem;
+
+        @include respond(phone) {
+          margin-left: 2rem;
+        }
       }
 
       &:last-child {
         margin-right: 5rem;
+
+        @include respond(phone) {
+          margin-right: 2rem;
+        }
       }
 
       &:not(:last-child) {
         margin-right: 0.75rem;
+
+        @include respond(phone) {
+          margin-right: 1rem;
+        }
       }
     }
   }

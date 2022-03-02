@@ -1,7 +1,11 @@
 .attention {
-  min-height: 115vh;
+  height: 115vh;
   width: 100%;
   position: relative;
+
+  @include respond(phone) {
+    max-height: 85vh;
+  }
 
   &__overlay {
     height: 100%;
@@ -11,6 +15,10 @@
     right: 0;
     z-index: 10;
     background: linear-gradient(transparent 80%, #141414);
+
+    @include respond(phone) {
+      background: linear-gradient(transparent 60%, #141414 90%);
+    }
   }
 
   &__backdrop {
@@ -21,6 +29,11 @@
     width: 100%;
     overflow: hidden;
 
+    @include respond(phone) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
     &--info {
       position: absolute;
       bottom: 30%;
@@ -28,6 +41,18 @@
       z-index: 15;
       width: 30%;
       padding: 2rem 0;
+
+      @include respond(phone) {
+        position: relative;
+        background: transparent;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
 
       & h2 {
         color: white;
@@ -43,6 +68,10 @@
         margin-bottom: 2rem;
         max-height: 12.5rem;
         overflow: hidden;
+
+        @include respond(phone) {
+          display: none;
+        }
       }
 
       &-btn {
@@ -69,11 +98,21 @@
       }
     }
 
-    & img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      object-position: top;
+    &--img {
+      @include bannerImage;
+
+      @include respond(phone) {
+        display: none;
+      }
+
+      &-mobile {
+        display: none;
+
+        @include respond(phone) {
+          display: block;
+          @include bannerImage;
+        }
+      }
     }
 
     & iframe {
@@ -87,6 +126,10 @@
       border: none;
       z-index: -1;
       border: 2px solid green;
+
+      @include respond(phone) {
+        display: none;
+      }
     }
   }
 }
