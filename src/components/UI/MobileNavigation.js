@@ -9,7 +9,7 @@ const MobileNavigation = () => {
   const offset = useSelector((state) => state.item.offset);
 
   const { x } = useSpring({
-    x: offset === 0 ? "rgba(0, 0, 0, 0.5)" : "#141414",
+    x: offset === 0 ? "rgba(0, 0, 0, 0.1)" : "#141414",
   });
 
   return (
