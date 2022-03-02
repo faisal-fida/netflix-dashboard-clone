@@ -4,7 +4,7 @@
   position: relative;
 
   @include respond(phone) {
-    max-height: 85vh;
+    max-height: 70vh;
   }
 
   &__overlay {
@@ -43,7 +43,6 @@
       padding: 2rem 0;
 
       @include respond(phone) {
-        position: relative;
         background: transparent;
         width: 100%;
         bottom: 0;
@@ -100,7 +99,7 @@
 
     &--img {
       @include bannerImage;
-      height: 100%;
+      object-fit: cover;
 
       @include respond(phone) {
         display: none;
@@ -112,6 +111,7 @@
         @include respond(phone) {
           display: block;
           @include bannerImage;
+          object-fit: contain;
         }
       }
     }
