@@ -99,7 +99,6 @@
 
     &--img {
       @include bannerImage;
-      object-fit: cover;
 
       @include respond(phone) {
         display: none;
@@ -111,7 +110,6 @@
         @include respond(phone) {
           display: block;
           @include bannerImage;
-          object-fit: contain;
         }
       }
     }
