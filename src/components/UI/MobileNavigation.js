@@ -1,19 +1,14 @@
 import React from "react";
-import logo from "../../img/netflix-logo.png";
+import logo from "../../img/netflix-logo-mobile.png";
 import avatar from "../../img/avatar.png";
 import { useSelector } from "react-redux";
-import { animated, useSpring } from "@react-spring/web";
 import { NavLink } from "react-router-dom";
 
 const MobileNavigation = () => {
   const offset = useSelector((state) => state.item.offset);
 
-  const { x } = useSpring({
-    x: offset === 0 ? "rgba(0, 0, 0, 0.1)" : "#141414",
-  });
-
   return (
-    <animated.nav style={{ background: x }} className="nav__mobile">
+    <nav className={offset === 0 ? "nav__mobile" : "nav__mobile nav__animated"}>
       <div className="nav__mobile--main">
         <div className="nav__mobile--main-logo">
           <img src={logo} alt="Netflix logo" />
@@ -35,7 +30,7 @@ const MobileNavigation = () => {
           </NavLink>
         </ul>
       </div>
-    </animated.nav>
+    </nav>
   );
 };
 

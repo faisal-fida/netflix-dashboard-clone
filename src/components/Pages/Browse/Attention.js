@@ -4,11 +4,22 @@ import requestController from "../../../utilities/requests";
 import movieTrailer from "movie-trailer";
 import { animated, useSpring } from "@react-spring/web";
 import { useParams } from "react-router-dom";
+import LoadingDiv from "../../UI/LoadingDiv";
+import getAttentionInfo from "../../../helpers/getAttentionInfo";
 
 const Attention = (props) => {
   const [attentionItem, setAttentionItem] = useState();
   const [trailer, setTrailer] = useState();
   const [trailerVisible, setTrailerVisible] = useState(true);
+  const [genres, setGenres] = useState();
+  const [isLoading, setIsLoading] = useState();
+
+  let genre;
+  if (attentionItem && genres) {
+    genre = attentionItem.genre_ids.map((id) =>
+      genres.find((genre) => genre.id === id)
+    );
+  }
 
   let request;
   const { media } = useParams();
@@ -31,22 +42,16 @@ const Attention = (props) => {
   }
 
   useEffect(() => {
-    const selector = Math.floor(Math.random() * 19);
-    const getMain = async () => {
-      try {
-        const response = await axios.get(request.trending);
-        setAttentionItem(response.data.results[selector]);
-
-        const trailer = await movieTrailer(null, {
-          tmdbId: response.data.results[selector].id,
-        });
-        setTrailer(trailer);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getMain();
-  }, [request.trending]);
+    getAttentionInfo(
+      setIsLoading,
+      setAttentionItem,
+      axios,
+      request,
+      movieTrailer,
+      setTrailer,
+      setGenres
+    );
+  }, [request]);
 
   let play;
   if (trailer) {
@@ -54,9 +59,10 @@ const Attention = (props) => {
   }
 
   return (
-    <Fragment>
-      {attentionItem && (
-        <section className="attention">
+    <section className="attention">
+      {isLoading && <LoadingDiv />}
+      {!isLoading && attentionItem && (
+        <Fragment>
           <div className="attention__overlay"></div>
           <div className="attention__backdrop">
             <section className="attention__backdrop--info">
@@ -65,6 +71,20 @@ const Attention = (props) => {
               <p className="attention__backdrop--info-desc">
                 {attentionItem.overview}
               </p>
+              <div className="attention__backdrop--info-genre">
+                {genres &&
+                  genre.map((genre, i) => {
+                    if (i < 2) {
+                      return (
+                        <Fragment key={genre.name}>
+                          <p>{genre.name}</p>
+                          <span>•</span>
+                        </Fragment>
+                      );
+                    }
+                    return null;
+                  })}
+              </div>
               <div className="attention__backdrop--info-btn">
                 <button>
                   <span>
@@ -89,7 +109,7 @@ const Attention = (props) => {
                 />
               </animated.div>
             )}
-            {trailer && trailerVisible && (
+            {trailer && trailerVisible && media !== "tv" && (
               <iframe
                 allow="autoplay"
                 title={attentionItem.name}
@@ -107,9 +127,9 @@ const Attention = (props) => {
               alt={`${attentionItem.name} backdrop`}
             />
           </div>
-        </section>
+        </Fragment>
       )}
-    </Fragment>
+    </section>
   );
 };
 

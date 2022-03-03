@@ -10,9 +10,6 @@ const Main = () => {
     setFade(true);
   };
 
-  // Top 10 list to go in here. need to figure out endpoint and also styling like netflix top 10
-  // also need to set an index so that only the top 10 appear
-
   return (
     <Fragment>
       <Attention fade={fade} setToggled={change} />

@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.scss";
 
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/UI/Dashboard";
 import Browse from "./components/Pages/Browse/Browse";
 import Selected from "./components/Pages/Selected/Selected";
 

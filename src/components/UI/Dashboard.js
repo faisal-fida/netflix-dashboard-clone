@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
-import { itemActions } from "../store/item";
-import GoToTop from "../helpers/goToTop";
+import { itemActions } from "../../store/item";
+import GoToTop from "../../helpers/goToTop";
 
 const Dashboard = (props) => {
   const dispatch = useDispatch();

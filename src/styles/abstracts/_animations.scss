@@ -1,0 +1,53 @@
+@keyframes loadingBackground {
+  0% {
+    background: #313131;
+  }
+
+  50% {
+    background: #141414;
+  }
+
+  100% {
+    background: #313131;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    background: none;
+  }
+
+  to {
+    background: #141414;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    background: #141414;
+  }
+
+  to {
+    background: none;
+  }
+}
+
+@keyframes fadeInMobile {
+  from {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  to {
+    background: #141414;
+  }
+}
+
+@keyframes fadeOutMobile {
+  from {
+    background: #141414;
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.1);
+  }
+}

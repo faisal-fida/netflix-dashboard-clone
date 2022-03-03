@@ -1,6 +1,7 @@
 .row {
   width: 100%;
   overflow: scroll;
+  padding-bottom: 2.5rem;
 
   &__heading {
     margin-left: 5rem;
@@ -15,8 +16,9 @@
   }
 
   &::-webkit-scrollbar {
-    width: 0; /* Remove scrollbar space */
+    width: 0;
     background: transparent;
+    display: none;
   }
 
   &__list {
@@ -32,7 +34,7 @@
     }
 
     &::-webkit-scrollbar {
-      width: 0; /* Remove scrollbar space */
+      width: 0;
       background: transparent;
       display: none;
     }

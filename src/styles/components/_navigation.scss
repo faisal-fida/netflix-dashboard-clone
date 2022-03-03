@@ -9,7 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all 0.3s ease;
+  animation: fadeOut 0.3s ease;
+  background: none;
 
   @include respond(phone) {
     display: none;
@@ -39,6 +40,11 @@
 
   &__active {
     font-weight: bold;
+  }
+
+  &__animated {
+    animation: fadeIn 0.3s ease;
+    background: #141414;
   }
 
   &__user {
