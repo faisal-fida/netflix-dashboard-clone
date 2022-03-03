@@ -6,6 +6,7 @@ import { animated, useSpring } from "@react-spring/web";
 import { useParams } from "react-router-dom";
 import LoadingDiv from "../../UI/LoadingDiv";
 import getAttentionInfo from "../../../helpers/getAttentionInfo";
+import ButtonContainer from "./Attention/Buttons/ButtonContainer";
 
 const Attention = (props) => {
   const [attentionItem, setAttentionItem] = useState();
@@ -85,20 +86,7 @@ const Attention = (props) => {
                     return null;
                   })}
               </div>
-              <div className="attention__backdrop--info-btn">
-                <button>
-                  <span>
-                    <i className="fa-solid fa-play"></i>
-                  </span>
-                  Play
-                </button>
-                <button className="more-info">
-                  <span>
-                    <i className="fa-solid fa-circle-info"></i>
-                  </span>
-                  More info
-                </button>
-              </div>
+              <ButtonContainer />
             </section>
             {trailer && trailerVisible && (
               <animated.div style={{ opacity: x }}>

@@ -30,7 +30,7 @@
     position: relative;
 
     @include respond(phone) {
-      height: 30vh;
+      height: 25vh;
     }
 
     &::-webkit-scrollbar {
@@ -61,6 +61,10 @@
           letter-spacing: -1.5rem;
           -webkit-text-stroke: 2px rgb(133, 133, 133); /* width and color */
           text-shadow: 1.25rem 0.75rem 1rem rgba(0, 0, 0, 0.65);
+
+          @include respond(phone) {
+            font-size: 18rem;
+          }
         }
       }
 

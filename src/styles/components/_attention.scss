@@ -59,6 +59,11 @@
         font-size: 4rem;
         line-height: 1.2;
         margin-bottom: 1rem;
+
+        @include respond(phone) {
+          width: 85%;
+          line-height: 1.05;
+        }
       }
 
       &-desc {
@@ -102,6 +107,12 @@
       &-btn {
         display: flex;
 
+        @include respond(phone) {
+          width: 90%;
+          justify-content: space-between;
+          align-items: center;
+        }
+
         & button {
           padding: 1rem 2.5rem;
           font-size: 1.8rem;
@@ -111,9 +122,17 @@
           display: flex;
           align-items: center;
 
+          @include respond(phone) {
+            width: 30%;
+          }
+
           & i {
             margin-right: 0.75rem;
             font-size: 2.2rem;
+
+            @include respond(phone) {
+              margin-bottom: 0.75rem;
+            }
           }
 
           &:not(:last-child) {
@@ -150,16 +169,65 @@
       width: 120%;
       border: none;
       z-index: -1;
-      border: 2px solid green;
 
       @include respond(phone) {
         display: none;
       }
     }
   }
-}
 
-.more-info {
-  background: rgba(161, 161, 161, 0.65);
-  color: white;
+  &__btn {
+    &--list {
+      display: none !important;
+
+      @include respond(phone) {
+        display: block !important;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        background: none;
+        color: #fff;
+        font-size: 1.6rem !important;
+
+        & i {
+          margin-right: 0 !important;
+        }
+      }
+    }
+
+    &--info {
+      background: rgba(161, 161, 161, 0.65);
+      color: #fff;
+
+      @include respond(phone) {
+        display: none !important;
+      }
+
+      &-mobile {
+        display: none !important;
+
+        @include respond(phone) {
+          display: block !important;
+          display: flex !important;
+          flex-direction: column;
+          color: #fff;
+          background: none;
+          font-size: 1.6rem !important;
+
+          & i {
+            margin-right: 0 !important;
+          }
+        }
+      }
+    }
+
+    &--play {
+      @include respond(phone) {
+        width: 25% !important;
+        padding: 0.5rem 2rem !important;
+        height: 40%;
+        color: #000;
+      }
+    }
+  }
 }
