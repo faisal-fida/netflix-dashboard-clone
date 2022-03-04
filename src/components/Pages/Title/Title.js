@@ -8,7 +8,6 @@ import Row from "../../Rows/Row";
 
 const Title = () => {
   const [genres, setGenres] = useState();
-  const [titleInfo, setTitleInfo] = useState();
   const { item } = useSelector((state) => state.item);
   const dispatch = useDispatch();
   const toggled = useSelector((state) => state.item.toggled);
