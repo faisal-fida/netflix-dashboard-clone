@@ -4,7 +4,7 @@ import "./App.scss";
 
 import Dashboard from "./components/UI/Dashboard";
 import Browse from "./components/Pages/Browse/Browse";
-import Selected from "./components/Pages/Selected/Selected";
+import Title from "./components/Pages/Title/Title";
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
           <Browse />
         </Route>
         <Route path="/browse/:id" exact>
-          <Selected />
+          <Title />
         </Route>
         <Route path="/media/:media" exact>
           <Browse />

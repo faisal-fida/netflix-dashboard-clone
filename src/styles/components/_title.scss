@@ -1,0 +1,162 @@
+.title {
+  height: 100vh;
+  width: 100%;
+  z-index: 30;
+  position: fixed;
+  background: #141414;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  color: white;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+    display: none;
+  }
+
+  &__container {
+    width: 100%;
+    position: relative;
+  }
+
+  &__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.75rem;
+    color: white;
+    border-radius: 100px;
+    background: black;
+    z-index: 35;
+    cursor: pointer;
+
+    @include respond(phone) {
+      height: 3.75rem;
+      width: 3.75rem;
+      font-size: 2.5rem;
+    }
+  }
+
+  &__main {
+    display: flex;
+    height: 55vh;
+    width: 100%;
+    position: relative;
+
+    @include respond(phone) {
+      display: flex;
+      flex-direction: column-reverse;
+      height: min-content;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 1rem 3rem 5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    z-index: 20;
+    background: linear-gradient(to right, #141414 82.5%, transparent);
+
+    @include respond(phone) {
+      position: relative;
+      padding: 3rem;
+      width: 100%;
+    }
+
+    & h2 {
+      font-size: 4.4rem;
+      width: 80%;
+      line-height: 1.2;
+    }
+  }
+
+  &__details {
+    padding: 1rem 0;
+    font-size: 1.4rem;
+  }
+
+  &__desc {
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
+
+  &__genres {
+    display: flex;
+    padding: 1rem 0;
+    font-size: 1.4rem;
+
+    & > * {
+      &:not(:nth-child(3)) {
+        margin-right: 0.5rem;
+      }
+
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+
+  &__figure {
+    width: 65%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    @include respond(phone) {
+      position: relative;
+      width: 100%;
+    }
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__cta {
+    padding: 3rem 5rem 1rem 5rem;
+
+    @include respond(phone) {
+      padding: 0 3rem 2rem 3rem;
+    }
+
+    & ul {
+      list-style-type: none;
+      width: 30%;
+
+      @include respond(phone) {
+        width: 100%;
+      }
+
+      & li {
+        display: flex;
+        align-items: center;
+        font-size: 1.8rem;
+        padding: 1rem 3rem 1rem 0;
+        cursor: pointer;
+
+        & i {
+          width: 5rem;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+}

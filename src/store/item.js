@@ -5,13 +5,17 @@ const itemSlice = createSlice({
   initialState: {
     item: "",
     offset: 0,
+    toggled: false,
   },
   reducers: {
-    addItem(state, action) {
+    setItem(state, action) {
       state.item = action.payload;
     },
     setYOffset(state, action) {
       state.offset = action.payload;
+    },
+    setToggled(state, action) {
+      state.toggled = action.payload;
     },
   },
 });
