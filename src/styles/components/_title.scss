@@ -20,10 +20,10 @@
     position: relative;
   }
 
-  &__close {
+  &__close,
+  &__back {
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
+
     height: 2.5rem;
     width: 2.5rem;
     display: flex;
@@ -41,6 +41,16 @@
       width: 3.75rem;
       font-size: 2.5rem;
     }
+  }
+
+  &__close {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  &__back {
+    top: 0.75rem;
+    left: 0.75rem;
   }
 
   &__main {
@@ -73,18 +83,27 @@
       position: relative;
       padding: 2.5rem;
       width: 100%;
+      background: none;
     }
 
     & h2 {
       font-size: 4.4rem;
       width: 80%;
       line-height: 1.2;
+
+      @include respond(phone) {
+        width: 100%;
+      }
     }
   }
 
   &__details {
     padding: 1rem 0;
     font-size: 1.4rem;
+
+    @include respond(phone) {
+      font-size: 1.6rem;
+    }
   }
 
   &__desc {
@@ -92,7 +111,7 @@
     line-height: 1.2;
 
     @include respond(phone) {
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
   }
 

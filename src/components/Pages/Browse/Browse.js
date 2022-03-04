@@ -7,6 +7,7 @@ import Main from "./Sections/Main";
 import TV from "./Sections/TV";
 import Movie from "./Sections/Movie";
 import Title from "../Title/Title";
+import SimilarTitle from "../Title/SimilarTitle";
 
 const Browse = () => {
   const { media } = useParams();
@@ -19,6 +20,7 @@ const Browse = () => {
       {media === "tv" && <TV />}
       {media === "movie" && <Movie />}
       <Title />
+      <SimilarTitle />
     </Fragment>
   );
 };

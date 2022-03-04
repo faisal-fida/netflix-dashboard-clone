@@ -1,17 +1,19 @@
 import React from "react";
-// import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { itemActions } from "../../store/item";
 
 const RowItem = (props) => {
-  // const history = useHistory();
   const dispatch = useDispatch();
+  const { item } = useSelector((state) => state.item);
 
   const getDetailsHandler = () => {
-    // localStorage.setItem("item", JSON.stringify(props.item));
-    dispatch(itemActions.setItem(props.item));
-    // history.push(`/browse/${props.item.id}`);
-    dispatch(itemActions.setToggled(true));
+    if (!item) {
+      dispatch(itemActions.setItem(props.item));
+      dispatch(itemActions.setToggled(true));
+    } else {
+      dispatch(itemActions.setSimilar(props.item));
+      dispatch(itemActions.setSimilarToggled(true));
+    }
   };
 
   return (

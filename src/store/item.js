@@ -3,9 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const itemSlice = createSlice({
   name: "item",
   initialState: {
-    item: "",
+    item: false,
+    similar: false,
     offset: 0,
     toggled: false,
+    similarToggled: false,
   },
   reducers: {
     setItem(state, action) {
@@ -16,6 +18,12 @@ const itemSlice = createSlice({
     },
     setToggled(state, action) {
       state.toggled = action.payload;
+    },
+    setSimilar(state, action) {
+      state.similar = action.payload;
+    },
+    setSimilarToggled(state, action) {
+      state.similarToggled = action.payload;
     },
   },
 });

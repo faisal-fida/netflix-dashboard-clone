@@ -5,13 +5,13 @@ import { useDispatch } from "react-redux";
 import { itemActions } from "../../../store/item";
 import getGenres from "../../../helpers/getGenres";
 import Row from "../../Rows/Row";
+import TitleLayout from "./TitleLayout";
 
 const Title = () => {
   const [genres, setGenres] = useState();
   const { item } = useSelector((state) => state.item);
   const dispatch = useDispatch();
   const toggled = useSelector((state) => state.item.toggled);
-  console.log(item.genre_ids);
 
   useEffect(() => {
     getGenres(setGenres);
@@ -30,7 +30,7 @@ const Title = () => {
     dispatch(itemActions.setToggled(false));
 
     setTimeout(() => {
-      dispatch(itemActions.setItem({}));
+      dispatch(itemActions.setItem(false));
     }, [250]);
   };
 
@@ -45,69 +45,22 @@ const Title = () => {
       style={{ transform: x.to((x) => `translateY(${x * 1}%)`) }}
     >
       {item && (
-        <div className="title__container">
+        <Fragment>
           <div className="title__close" onClick={closePageHandler}>
             <i className="fa-solid fa-xmark"></i>
           </div>
-          <section className="title__main">
-            <section className="title__info">
-              <h2>{item.title && item.title}</h2>
-              <h2>{item.name && item.name}</h2>
-              {item.release_date && (
-                <div className="title__details">
-                  <p>{releaseDate}</p>
-                </div>
-              )}
-              <p className="title__desc">{item.overview}</p>
-              {item.genre_ids && (
-                <div className="title__genres">
-                  {genres &&
-                    genre.map((genre, i) => {
-                      if (i < 2) {
-                        return (
-                          <Fragment key={genre.name}>
-                            <p>{genre.name}</p>
-                            <span>•</span>
-                          </Fragment>
-                        );
-                      }
-                      return null;
-                    })}
-                </div>
-              )}
-            </section>
-            <figure className="title__figure">
-              <img
-                src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-                alt="test"
-              />
-            </figure>
-          </section>
-          <section className="title__cta">
-            <ul>
-              <li>
-                <i className="fa-solid fa-play"></i>
-                <p>Play</p>
-              </li>
-              <li>
-                <i className="fa-solid fa-layer-group"></i>
-                <p>Trailers & More</p>
-              </li>
-              <li>
-                <i className="fa-solid fa-closed-captioning"></i>
-                <p>Audio & Subtitles</p>
-              </li>
-              <li>
-                <i className="fa-solid fa-plus"></i>
-                <p>Add to My List</p>
-              </li>
-            </ul>
-          </section>
+          <TitleLayout
+            item={item}
+            genres={genres}
+            genre={genre}
+            releaseDate={releaseDate}
+            close={closePageHandler}
+          />
           <Row
             title={`Titles similar to ${item.title ? item.title : item.name}`}
             endpoint={`/movie/${item.id}/similar?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=1`}
           />
-        </div>
+        </Fragment>
       )}
     </animated.div>
   );

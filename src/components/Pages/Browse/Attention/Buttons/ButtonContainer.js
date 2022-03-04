@@ -1,7 +1,16 @@
 import React from "react";
 import Button from "./Button";
+import { useDispatch } from "react-redux";
+import { itemActions } from "../../../../../store/item";
 
-const ButtonContainer = () => {
+const ButtonContainer = (props) => {
+  const dispatch = useDispatch();
+
+  const openAttentionHandler = () => {
+    dispatch(itemActions.setItem(props.item));
+    dispatch(itemActions.setToggled(true));
+  };
+
   return (
     <div className="attention__backdrop--info-btn">
       <Button
@@ -15,11 +24,13 @@ const ButtonContainer = () => {
         icon="fa-solid fa-play"
       />
       <Button
+        onClick={openAttentionHandler}
         btnClass="attention__btn--info"
         name="More Info"
         icon="fa-solid fa-circle-info"
       />
       <Button
+        onClick={openAttentionHandler}
         btnClass="attention__btn--info-mobile"
         name="Info"
         icon="fa-solid fa-circle-info"

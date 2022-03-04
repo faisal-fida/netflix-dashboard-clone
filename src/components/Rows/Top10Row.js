@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import axios from "../../utilities/axios";
+import Top10RowItem from "./Top10RowItem";
 
 const Top10Row = (props) => {
   const [titles, setTitles] = useState([]);
@@ -24,22 +25,7 @@ const Top10Row = (props) => {
           {titles.length > 0 &&
             titles.map((title, i) => {
               if (i < 10) {
-                return (
-                  <li
-                    key={title.id}
-                    className="row__list--item row__list--item-container"
-                  >
-                    <div className="row__list--item-top">
-                      <p>{i + 1}</p>
-                    </div>
-                    <div className="row__list--item-img">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${title.poster_path}`}
-                        alt={title.name}
-                      />
-                    </div>
-                  </li>
-                );
+                return <Top10RowItem title={title} i={i} />;
               }
               return null;
             })}

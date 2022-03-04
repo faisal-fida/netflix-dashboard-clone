@@ -86,7 +86,7 @@ const Attention = (props) => {
                     return null;
                   })}
               </div>
-              <ButtonContainer />
+              <ButtonContainer item={attentionItem} />
             </section>
             {trailer && trailerVisible && (
               <animated.div style={{ opacity: x }}>
