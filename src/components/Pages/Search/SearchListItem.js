@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { itemActions } from "../../store/item";
+import { itemActions } from "../../../store/item";
 
-const RowItem = (props) => {
+const SearchListItem = (props) => {
   const dispatch = useDispatch();
   const { item } = useSelector((state) => state.item);
 
@@ -17,15 +17,13 @@ const RowItem = (props) => {
   };
 
   return (
-    <li className="row__list--item" onClick={getDetailsHandler}>
-      <div className="row__list--item-img">
-        <img
-          src={`https://image.tmdb.org/t/p/original${props.item.poster_path}`}
-          alt={props.item.name}
-        />
-      </div>
+    <li className="search__list--item" onClick={getDetailsHandler}>
+      <img
+        src={`https://image.tmdb.org/t/p/original${props.item.poster_path}`}
+        alt="test"
+      />
     </li>
   );
 };
 
-export default RowItem;
+export default SearchListItem;

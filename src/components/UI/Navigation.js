@@ -8,7 +8,7 @@ const Navigation = () => {
   const offset = useSelector((state) => state.item.offset);
 
   return (
-    <nav className={offset === 0 ? "nav" : "nav nav__animated"}>
+    <nav className={offset === false ? "nav" : "nav nav__animated"}>
       <div className="nav__main">
         <div className="nav__main--logo">
           <img src={logo} alt="Netflix logo" />

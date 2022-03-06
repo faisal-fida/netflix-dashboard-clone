@@ -5,9 +5,10 @@ const itemSlice = createSlice({
   initialState: {
     item: false,
     similar: false,
-    offset: 0,
+    offset: false,
     toggled: false,
     similarToggled: false,
+    searchToggled: false,
   },
   reducers: {
     setItem(state, action) {
@@ -24,6 +25,9 @@ const itemSlice = createSlice({
     },
     setSimilarToggled(state, action) {
       state.similarToggled = action.payload;
+    },
+    setSearchToggled(state, action) {
+      state.searchToggled = action.payload;
     },
   },
 });
