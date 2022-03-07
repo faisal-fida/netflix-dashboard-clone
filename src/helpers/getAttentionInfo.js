@@ -3,8 +3,8 @@ const getAttentionInfo = async (
   setItemFunc,
   method,
   request,
-  // getTrailerFunc,
-  // setTrailerFunc,
+  getTrailerFunc,
+  setTrailerFunc,
   setGenresFunc
 ) => {
   try {
@@ -13,10 +13,10 @@ const getAttentionInfo = async (
     const response = await method.get(request.trending);
     setItemFunc(response.data.results[0]);
 
-    // const trailer = await getTrailerFunc(null, {
-    //   tmdbId: response.data.results[0].id,
-    // });
-    // setTrailerFunc(trailer);
+    const trailer = await getTrailerFunc(null, {
+      tmdbId: response.data.results[0].id,
+    });
+    setTrailerFunc(trailer);
 
     const movieGenres = await method.get(
       "https://api.themoviedb.org/3/genre/movie/list?api_key=631d59e924809aae36b7176af2968d58&language=en-US"
