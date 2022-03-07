@@ -1,8 +1,8 @@
 import React, { useEffect, useState, Fragment } from "react";
 import axios from "../../../utilities/axios";
 import requestController from "../../../utilities/requests";
-import movieTrailer from "movie-trailer";
-import { animated, useSpring } from "@react-spring/web";
+// import movieTrailer from "movie-trailer";
+// import { animated, useSpring } from "@react-spring/web";
 import { useParams } from "react-router-dom";
 import LoadingDiv from "../../UI/LoadingDiv";
 import getAttentionInfo from "../../../helpers/getAttentionInfo";
@@ -10,8 +10,8 @@ import ButtonContainer from "./Attention/Buttons/ButtonContainer";
 
 const Attention = (props) => {
   const [attentionItem, setAttentionItem] = useState();
-  const [trailer, setTrailer] = useState();
-  const [trailerVisible, setTrailerVisible] = useState(true);
+  // const [trailer, setTrailer] = useState();
+  // const [trailerVisible, setTrailerVisible] = useState(true);
   const [genres, setGenres] = useState();
   const [isLoading, setIsLoading] = useState();
 
@@ -28,19 +28,19 @@ const Attention = (props) => {
   if (media === "tv") request = requestController.tvRequests;
   if (media === "movie") request = requestController.movieRequests;
 
-  const { x } = useSpring({
-    x: !props.fade ? 1 : 0,
-  });
+  // const { x } = useSpring({
+  //   x: !props.fade ? 1 : 0,
+  // });
 
-  if (trailerVisible) {
-    setTimeout(() => {
-      props.setToggled();
-    }, 5000);
+  // if (trailerVisible) {
+  //   setTimeout(() => {
+  //     props.setToggled();
+  //   }, 5000);
 
-    setTimeout(() => {
-      setTrailerVisible(false);
-    }, 35000);
-  }
+  //   setTimeout(() => {
+  //     setTrailerVisible(false);
+  //   }, 35000);
+  // }
 
   useEffect(() => {
     getAttentionInfo(
@@ -48,16 +48,16 @@ const Attention = (props) => {
       setAttentionItem,
       axios,
       request,
-      movieTrailer,
-      setTrailer,
+      // movieTrailer,
+      // setTrailer,
       setGenres
     );
   }, [request]);
 
-  let play;
-  if (trailer) {
-    play = trailer.split("v=")[1];
-  }
+  // let play;
+  // if (trailer) {
+  //   play = trailer.split("v=")[1];
+  // }
 
   return (
     <section className="attention">
@@ -88,7 +88,7 @@ const Attention = (props) => {
               </div>
               <ButtonContainer item={attentionItem} />
             </section>
-            {trailer && trailerVisible && (
+            {/* {trailer && trailerVisible && (
               <animated.div style={{ opacity: x }}>
                 <img
                   className="attention__backdrop--img"
@@ -96,14 +96,14 @@ const Attention = (props) => {
                   alt={`${attentionItem.name} backdrop`}
                 />
               </animated.div>
-            )}
-            {trailer && trailerVisible && media !== "tv" && (
+            )} */}
+            {/* {trailer && trailerVisible && media !== "tv" && (
               <iframe
                 allow="autoplay"
                 title={attentionItem.name}
                 src={`https://www.youtube.com/embed/${play}?autoplay=1&mute=1&end`}
               ></iframe>
-            )}
+            )} */}
             <img
               className="attention__backdrop--img"
               src={`https://image.tmdb.org/t/p/original${attentionItem.backdrop_path}`}

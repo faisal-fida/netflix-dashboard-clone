@@ -43,9 +43,11 @@
       background: rgb(122, 122, 122);
       border: none;
       color: white;
+      font-size: 1.8rem;
 
       &::placeholder {
         color: white;
+        font-size: 1.8rem;
       }
 
       &:focus {
