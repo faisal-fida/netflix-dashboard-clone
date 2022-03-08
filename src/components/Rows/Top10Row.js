@@ -25,7 +25,7 @@ const Top10Row = (props) => {
           {titles.length > 0 &&
             titles.map((title, i) => {
               if (i < 10) {
-                return <Top10RowItem title={title} i={i} />;
+                return <Top10RowItem title={title} i={i} key={title.id} />;
               }
               return null;
             })}

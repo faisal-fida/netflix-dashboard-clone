@@ -21,7 +21,7 @@ const Top10RowItem = (props) => {
       </div>
       <div className="row__list--item-img">
         <img
-          src={`https://image.tmdb.org/t/p/w500${props.title.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w300${props.title.poster_path}`}
           alt={props.title.name}
         />
       </div>

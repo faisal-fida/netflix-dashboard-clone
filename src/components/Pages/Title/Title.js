@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { itemActions } from "../../../store/item";
 import getGenres from "../../../helpers/getGenres";
-import Row from "../../Rows/Row";
+import SimilarList from "./SimilarList";
 import TitleLayout from "./TitleLayout";
 
 const Title = () => {
@@ -46,9 +46,6 @@ const Title = () => {
     >
       {item && (
         <Fragment>
-          <div className="title__close" onClick={closePageHandler}>
-            <i className="fa-solid fa-xmark"></i>
-          </div>
           <TitleLayout
             item={item}
             genres={genres}
@@ -56,8 +53,7 @@ const Title = () => {
             releaseDate={releaseDate}
             close={closePageHandler}
           />
-          <Row
-            title={`Titles similar to ${item.title ? item.title : item.name}`}
+          <SimilarList
             endpoint={`/movie/${item.id}/similar?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=1`}
           />
         </Fragment>

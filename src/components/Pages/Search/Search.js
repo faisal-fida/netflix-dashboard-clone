@@ -11,8 +11,6 @@ const Search = () => {
   const [match, setMatch] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(match);
-
   let refinedSearch;
   if (search.length > 0) {
     refinedSearch = search.split(" ").join("%");

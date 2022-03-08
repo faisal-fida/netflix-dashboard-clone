@@ -34,6 +34,7 @@
     &--side {
       display: flex;
       align-items: center;
+      height: 3rem;
 
       & i {
         font-size: 2.2rem;
@@ -43,7 +44,7 @@
     }
 
     &--user {
-      height: 3rem;
+      height: 100%;
       width: 3rem;
       border-radius: 2.5px;
       overflow: hidden;

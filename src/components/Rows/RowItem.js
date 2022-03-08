@@ -9,10 +9,16 @@ const RowItem = (props) => {
   const getDetailsHandler = () => {
     if (!item) {
       dispatch(itemActions.setItem(props.item));
-      dispatch(itemActions.setToggled(true));
+
+      setTimeout(() => {
+        dispatch(itemActions.setToggled(true));
+      }, 350);
     } else {
       dispatch(itemActions.setSimilar(props.item));
-      dispatch(itemActions.setSimilarToggled(true));
+
+      setTimeout(() => {
+        dispatch(itemActions.setSimilarToggled(true));
+      }, 350);
     }
   };
 
@@ -20,7 +26,7 @@ const RowItem = (props) => {
     <li className="row__list--item" onClick={getDetailsHandler}>
       <div className="row__list--item-img">
         <img
-          src={`https://image.tmdb.org/t/p/original${props.item.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w300${props.item.poster_path}`}
           alt={props.item.name}
         />
       </div>
