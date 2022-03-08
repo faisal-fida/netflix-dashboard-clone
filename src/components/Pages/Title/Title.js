@@ -45,18 +45,13 @@ const Title = () => {
       style={{ transform: x.to((x) => `translateY(${x * 1}%)`) }}
     >
       {item && (
-        <Fragment>
-          <TitleLayout
-            item={item}
-            genres={genres}
-            genre={genre}
-            releaseDate={releaseDate}
-            close={closePageHandler}
-          />
-          <SimilarList
-            endpoint={`/movie/${item.id}/similar?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=1`}
-          />
-        </Fragment>
+        <TitleLayout
+          item={item}
+          genres={genres}
+          genre={genre}
+          releaseDate={releaseDate}
+          close={closePageHandler}
+        />
       )}
     </animated.div>
   );

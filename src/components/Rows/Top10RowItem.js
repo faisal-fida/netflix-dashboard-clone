@@ -7,7 +7,10 @@ const Top10RowItem = (props) => {
 
   const getDetailsHandler = () => {
     dispatch(itemActions.setItem(props.title));
-    dispatch(itemActions.setToggled(true));
+
+    setTimeout(() => {
+      dispatch(itemActions.setToggled(true));
+    }, 350);
   };
 
   return (

@@ -8,7 +8,10 @@ const ButtonContainer = (props) => {
 
   const openAttentionHandler = () => {
     dispatch(itemActions.setItem(props.item));
-    dispatch(itemActions.setToggled(true));
+
+    setTimeout(() => {
+      dispatch(itemActions.setToggled(true));
+    }, 350);
   };
 
   return (

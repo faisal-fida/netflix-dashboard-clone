@@ -1,4 +1,5 @@
 import React from "react";
+import SimilarList from "./SimilarList";
 
 const TitleLayout = (props) => {
   return (
@@ -43,31 +44,14 @@ const TitleLayout = (props) => {
             <i className="fa-solid fa-xmark"></i>
           </div>
           <img
-            src={`https://image.tmdb.org/t/p/w500${props.item.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original${props.item.backdrop_path}`}
             alt="test"
           />
         </figure>
       </section>
-      <section className="title__cta">
-        <ul>
-          <li>
-            <i className="fa-solid fa-play"></i>
-            <p>Play</p>
-          </li>
-          <li>
-            <i className="fa-solid fa-layer-group"></i>
-            <p>Trailers & More</p>
-          </li>
-          <li>
-            <i className="fa-solid fa-closed-captioning"></i>
-            <p>Audio & Subtitles</p>
-          </li>
-          <li>
-            <i className="fa-solid fa-plus"></i>
-            <p>Add to My List</p>
-          </li>
-        </ul>
-      </section>
+      <SimilarList
+        endpoint={`/movie/${props.item.id}/similar?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=1`}
+      />
     </div>
   );
 };
