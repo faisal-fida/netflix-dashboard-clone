@@ -1,10 +1,10 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { animated, useSpring } from "@react-spring/web";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { itemActions } from "../../../store/item";
 import getGenres from "../../../helpers/getGenres";
-import SimilarList from "./SimilarList";
+// import SimilarList from "./SimilarList";
 import TitleLayout from "./TitleLayout";
 
 const Title = () => {
