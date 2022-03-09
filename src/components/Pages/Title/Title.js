@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { animated, useSpring } from "@react-spring/web";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { itemActions } from "../../../store/item";
 import getGenres from "../../../helpers/getGenres";
-// import SimilarList from "./SimilarList";
+import SimilarList from "./SimilarList";
 import TitleLayout from "./TitleLayout";
 
 const Title = () => {
@@ -28,6 +28,7 @@ const Title = () => {
 
   const closePageHandler = () => {
     dispatch(itemActions.setToggled(false));
+    document.title = "Netflix";
 
     setTimeout(() => {
       dispatch(itemActions.setItem(false));
@@ -51,7 +52,12 @@ const Title = () => {
           genre={genre}
           releaseDate={releaseDate}
           close={closePageHandler}
-        />
+        >
+          <SimilarList
+            movieEndpoint={`/movie/${item.id}/similar?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=1`}
+            tvEndpoint={`/tv/${item.id}/similar?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US&page=1`}
+          />
+        </TitleLayout>
       )}
     </animated.div>
   );

@@ -48,7 +48,7 @@ const SimilarTitle = (props) => {
 
   return (
     <animated.div
-      className="title"
+      className="title title__similar--page"
       style={{ transform: x.to((x) => `translateX(${x * 1}%)`) }}
     >
       <div className="title__back" onClick={goBackHandler}>

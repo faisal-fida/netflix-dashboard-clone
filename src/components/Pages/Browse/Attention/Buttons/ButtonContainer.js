@@ -8,6 +8,9 @@ const ButtonContainer = (props) => {
 
   const openAttentionHandler = () => {
     dispatch(itemActions.setItem(props.item));
+    document.title = `${
+      props.item.title ? props.item.title : props.item.name
+    } - Netflix`;
 
     setTimeout(() => {
       dispatch(itemActions.setToggled(true));

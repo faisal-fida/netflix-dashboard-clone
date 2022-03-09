@@ -9,12 +9,12 @@ const getAttentionInfo = async (
 ) => {
   try {
     setLoadingFunc(true);
-    // const selector = Math.floor(Math.random() * 19);
+    const selector = Math.floor(Math.random() * 20);
     const response = await method.get(request.trending);
-    setItemFunc(response.data.results[0]);
+    setItemFunc(response.data.results[selector]);
 
     const trailer = await getTrailerFunc(null, {
-      tmdbId: response.data.results[0].id,
+      tmdbId: response.data.results[selector].id,
     });
     setTrailerFunc(trailer);
 

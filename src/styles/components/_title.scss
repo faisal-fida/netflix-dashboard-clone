@@ -24,9 +24,8 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.65);
     z-index: 25;
-    backdrop-filter: blur(0.2rem);
 
     @include respond(phone) {
       display: none;
@@ -82,8 +81,7 @@
 
   &__main {
     display: flex;
-    flex-direction: column-reverse;
-    // height: 55vh;
+    flex-direction: column;
     width: 100%;
     position: relative;
 
@@ -91,23 +89,46 @@
       display: flex;
       height: min-content;
     }
+
+    &--desktop {
+      position: relative;
+    }
+
+    &--backdrop {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(transparent 60%, #141414);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 40;
+
+      @include respond(phone) {
+        display: none;
+      }
+    }
   }
 
   &__info {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 1rem 3rem 5rem;
-    position: relative;
     width: 100%;
-    z-index: 20;
-    background: linear-gradient(to right, #141414 82.5%, transparent);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 45;
+
+    &--desktop {
+      padding: 3rem 5rem;
+    }
 
     @include respond(phone) {
       position: relative;
       padding: 2rem;
       width: 100%;
       background: none;
+      z-index: 20;
     }
 
     & > * {
@@ -117,20 +138,35 @@
     }
 
     & h2 {
-      font-size: 4.4rem;
-      width: 80%;
+      font-size: 4rem;
+      width: 55%;
       line-height: 1.2;
+      margin-left: 5rem;
 
       @include respond(phone) {
         width: 100%;
         font-size: 2.2rem;
         margin-bottom: 1rem;
+        margin-left: 0;
       }
     }
   }
 
   &__details {
     font-size: 1.4rem;
+    display: none;
+
+    @include respond(phone) {
+      display: block;
+    }
+
+    &--desktop {
+      font-size: 1.8rem;
+
+      @include respond(phone) {
+        display: none;
+      }
+    }
   }
 
   &__btn {
@@ -151,6 +187,7 @@
 
       &--play {
         margin-bottom: 1rem;
+        color: black;
       }
 
       &--download {
@@ -170,12 +207,24 @@
   }
 
   &__desc {
-    font-size: 1.6rem;
+    font-size: 2rem;
     line-height: 1.2;
+    padding: 2rem 0;
+    font-weight: 300;
 
     @include respond(phone) {
-      font-size: 2rem;
-      margin-top: 1rem;
+      display: none;
+    }
+
+    &--mobile {
+      display: none;
+
+      @include respond(phone) {
+        display: block;
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-top: 1.8rem;
+      }
     }
   }
 
@@ -214,40 +263,131 @@
   &__similar {
     overflow: hidden;
 
+    &--page {
+      display: none;
+
+      @include respond(phone) {
+        display: block;
+      }
+    }
+
     &-heading {
       border-top: 4px solid red;
       padding: 2rem 0;
-      margin-left: 2rem;
+      margin-left: 5rem;
       font-size: 2rem;
       width: max-content;
+
+      @include respond(phone) {
+        margin-left: 2rem;
+      }
     }
 
     &--list {
-      @include respond(phone) {
+      &-mobile {
+        display: none;
+
+        @include respond(phone) {
+          width: 100%;
+          display: grid;
+          grid-template-columns: (repeat(3, 1fr));
+          grid-gap: 1rem;
+          list-style-type: none;
+          padding: 0 2rem 2rem 2rem;
+        }
+      }
+
+      &-desktop {
         width: 100%;
+        padding: 2rem 5rem;
         display: grid;
         grid-template-columns: (repeat(3, 1fr));
-        grid-gap: 1rem;
+        grid-gap: 2rem;
         list-style-type: none;
-        padding: 0 2rem 2rem 2rem;
 
-        & li {
-          width: 100%;
+        @include respond(phone) {
+          display: none;
+          grid-gap: 1rem;
+        }
+      }
+
+      & li {
+        height: 32.5rem;
+        background: #2f2f2f;
+        width: 100%;
+        border-radius: 5px;
+        overflow: hidden;
+
+        @include respond(phone) {
           border-radius: 2.5px;
-          overflow: hidden;
+          height: auto;
+          background: none;
+        }
 
-          &:first-child {
-            margin-left: 0;
-          }
+        &:first-child {
+          margin-left: 0;
+        }
 
-          & img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
+        & img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
     }
+  }
+
+  &__list {
+    &--desktop {
+      list-style-type: none;
+      display: flex;
+      margin-left: 5rem;
+      width: max-content;
+      height: max-content;
+      display: flex;
+      align-items: center;
+      margin-bottom: 4rem !important;
+
+      & button {
+        height: 4.25rem;
+        padding: 0 3.25rem;
+        font-size: 1.7rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+
+        & i {
+          margin-right: 1rem;
+          font-size: 2.2rem;
+        }
+      }
+
+      & li {
+        &:not(:last-child) {
+          margin-right: 0.75rem;
+        }
+      }
+
+      @include respond(phone) {
+        display: none;
+      }
+    }
+  }
+
+  &__badge {
+    border: 2px solid #929396;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    border-radius: 100px;
+    height: 4.25rem;
+    width: 4.25rem;
+    background: rgba(146, 147, 150, 0.25);
+    cursor: pointer;
   }
 
   &__figure {
@@ -256,12 +396,12 @@
     position: sticky;
     top: 0;
     right: 0;
-    z-index: 30;
+    z-index: 15;
 
     @include respond(phone) {
       position: sticky;
-      z-index: 20;
       width: 100%;
+      z-index: 25;
     }
 
     & img {
@@ -271,39 +411,54 @@
     }
   }
 
-  &__cta {
-    padding: 3rem 5rem 1rem 5rem;
-
-    @include respond(phone) {
-      display: none;
-    }
-
-    & ul {
-      list-style-type: none;
-      width: 30%;
-
-      @include respond(phone) {
-        width: 100%;
-      }
-
-      & li {
+  &__similar {
+    &--desktop {
+      & section {
+        padding: 1.75rem;
         display: flex;
-        align-items: center;
-        font-size: 1.8rem;
-        padding: 1rem 3rem 1rem 0;
-        cursor: pointer;
+        align-items: flex-end;
+        justify-content: space-between;
 
-        @include respond(phone) {
-          font-size: 2rem;
+        & div {
+          flex: 1;
+
+          & h2 {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 500;
+          }
+
+          & p {
+            margin-top: 0.35rem;
+            font-size: 1.2rem;
+          }
         }
 
         & i {
-          width: 5rem;
-        }
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 2rem;
+          border: 2px solid #929396;
+          width: 4rem;
+          height: 4rem;
+          border-radius: 100px;
+          cursor: pointer;
+          transition: all 0.25s ease;
 
-        &:not(:last-child) {
-          margin-bottom: 0.5rem;
+          &:hover {
+            background: rgba(146, 147, 150, 0.25);
+          }
         }
+      }
+
+      &-desc {
+        padding: 0 1.75rem;
+        max-height: 30%;
+        overflow: hidden;
+        font-size: 1.6rem;
+        font-weight: 300;
+        line-height: 1.2;
       }
     }
   }
