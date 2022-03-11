@@ -121,6 +121,10 @@
 
     &--desktop {
       padding: 3rem 5rem;
+
+      @include respond(phone) {
+        display: none;
+      }
     }
 
     @include respond(phone) {
