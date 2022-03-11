@@ -52,7 +52,8 @@ const AuthForm = () => {
   return (
     <form className="auth__form" onSubmit={submitFormHandler}>
       <section>
-        <p>{isLogin ? "Sign In" : "Create Account"}</p>
+        {isLogin && <p>Sign In</p>}
+        {!isLogin && <p>Create Account</p>}
         <div>
           <input
             className="auth__input"
