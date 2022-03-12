@@ -9,14 +9,14 @@ import Title from "./components/Pages/Title/Title";
 
 const App = () => {
   return (
-    <Dashboard>
-      <Switch>
-        <Route path="/" exact>
-          <Redirect to="/auth" />
-        </Route>
-        <Route path="/auth">
-          <Auth />
-        </Route>
+    <Switch>
+      <Route path="/" exact>
+        <Redirect to="/auth" />
+      </Route>
+      <Route path="/auth">
+        <Auth />
+      </Route>
+      <Dashboard>
         <Route path="/browse">
           <Browse />
         </Route>
@@ -26,8 +26,8 @@ const App = () => {
         <Route path="/media/:media" exact>
           <Browse />
         </Route>
-      </Switch>
-    </Dashboard>
+      </Dashboard>
+    </Switch>
   );
 };
 
