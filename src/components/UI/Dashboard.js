@@ -23,7 +23,7 @@ const Dashboard = (props) => {
       }
     };
     getAccount();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Fragment>
