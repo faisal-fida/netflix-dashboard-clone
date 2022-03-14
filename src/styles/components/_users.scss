@@ -1,0 +1,212 @@
+.user {
+  position: relative;
+  min-height: 100vh;
+
+  &__heading {
+    font-size: 4.8rem;
+    color: white;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 3rem;
+
+    @include respond(phone) {
+      font-size: 2.8rem;
+      margin-bottom: 4rem;
+    }
+  }
+
+  &__list {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include respond(phone) {
+      top: 45%;
+    }
+
+    & ul {
+      display: flex;
+      justify-content: center;
+      list-style-type: none;
+
+      @include respond(phone) {
+        display: grid;
+        grid-template-columns: repeat(2, 12rem);
+        grid-column-gap: 2.5rem;
+        grid-row-gap: 4rem;
+      }
+    }
+  }
+
+  &__account {
+    border: none;
+    height: min-content;
+    width: 12rem;
+    border-radius: 4px;
+
+    &:hover {
+      & figure {
+        background: white;
+
+        @include respond(phone) {
+          border: none;
+          background: none;
+        }
+      }
+
+      & p {
+        color: white;
+      }
+    }
+
+    &:not(:last-child) {
+      margin-right: 2.5rem;
+    }
+
+    & figure {
+      height: 12rem;
+      width: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      &:hover::after {
+        border: 3px solid white;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: transparent;
+      }
+
+      & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      & i {
+        font-size: 8rem;
+        color: #808080;
+      }
+    }
+
+    & p {
+      color: #808080;
+      text-align: center;
+      font-size: 1.8rem;
+      margin-top: 1.25rem;
+
+      @include respond(phone) {
+        font-size: 2.4rem;
+        margin-top: 1.75rem;
+        color: white;
+      }
+    }
+  }
+
+  &__create {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+
+    & div {
+      padding: 2rem 0;
+
+      &:not(:last-child) {
+        border-bottom: 0.25px solid rgb(58, 58, 58);
+      }
+    }
+
+    & button {
+      padding: 0.85rem 2.5rem;
+      font-size: 1.6rem;
+      border-radius: none;
+      border: none;
+      letter-spacing: 0.15rem;
+      cursor: pointer;
+
+      &:first-child {
+        font-weight: bold;
+        margin-right: 2rem;
+
+        &:hover {
+          background: #e50914;
+          color: #fff;
+        }
+      }
+
+      &:last-child {
+        background: transparent;
+        border: 1px solid #656565;
+        color: #656565;
+
+        &:hover {
+          color: #fff;
+          border: 1px solid #fff;
+        }
+      }
+    }
+  }
+
+  &__desc {
+    & p {
+      &:first-child {
+        color: white;
+        font-size: 4.8rem;
+        line-height: 1.6;
+      }
+
+      &:last-child {
+        color: #606060;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &__details {
+    display: flex;
+    align-items: center;
+
+    & figure {
+      height: 11rem;
+      width: 11rem;
+      border-radius: 4px;
+      overflow: hidden;
+
+      & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    & input {
+      margin-left: 2rem;
+      padding: 0.85rem;
+      font-size: 1.6rem;
+      flex: 1;
+      border: none;
+      border-radius: 0px;
+      background: #666666;
+      color: #fff;
+      outline: none;
+
+      &::placeholder {
+        color: #969696;
+      }
+    }
+  }
+}

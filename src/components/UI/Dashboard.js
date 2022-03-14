@@ -1,29 +1,33 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import GoToTop from "../../helpers/goToTop";
 import Search from "../Pages/Search/Search";
-import axios from "axios";
-import Cookies from "js-cookie";
-import { useDispatch } from "react-redux";
-import { userActions } from "../../store/user";
+// import axios from "axios";
+// import Cookies from "js-cookie";
+// import { useDispatch, useSelector } from "react-redux";
+// import { userActions } from "../../store/user";
 
 const Dashboard = (props) => {
-  const dispatch = useDispatch();
-  // This will go in the user selection page
-  useEffect(() => {
-    const getAccount = async () => {
-      const id = Cookies.get("accountId");
-      try {
-        const response = await axios.get(
-          `http://localhost:8000/api/v1/accounts/${id}`
-        );
+  // const dispatch = useDispatch();
 
-        dispatch(userActions.setUser(response.data.data.account));
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getAccount();
-  }, [dispatch]);
+  // const user = useSelector((state) => state.user.user);
+
+  // console.log(user);
+  // This will go in the user selection page
+  // useEffect(() => {
+  //   const getAccount = async () => {
+  //     const id = Cookies.get("accountId");
+  //     try {
+  //       const response = await axios.get(
+  //         `http://localhost:8000/api/v1/accounts/${id}`
+  //       );
+
+  //       dispatch(userActions.setUser(response.data.data.account));
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getAccount();
+  // }, [dispatch]);
 
   return (
     <Fragment>

@@ -1,6 +1,4 @@
 import React from "react";
-import logo from "../../img/netflix-logo-mobile.png";
-import avatar from "../../img/avatar.png";
 import { useDispatch, useSelector } from "react-redux";
 import { itemActions } from "../../store/item";
 import { NavLink } from "react-router-dom";
@@ -34,7 +32,7 @@ const MobileNavigation = () => {
     >
       <div className="nav__mobile--main">
         <div className="nav__mobile--main-logo">
-          <img src={logo} alt="Netflix logo" />
+          <img src="/img/netflix-logo-mobile.png" alt="Netflix logo" />
         </div>
         <div className="nav__mobile--side">
           <i
@@ -42,7 +40,7 @@ const MobileNavigation = () => {
             onClick={openSearchHandler}
           ></i>
           <div className="nav__mobile--user">
-            <img src={avatar} alt="User avatar" />
+            <img src="/img/avatar.png" alt="User avatar" />
           </div>
         </div>
       </div>

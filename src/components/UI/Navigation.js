@@ -1,6 +1,4 @@
 import React from "react";
-import logo from "../../img/netflix-logo.png";
-import avatar from "../../img/avatar.png";
 import { useDispatch, useSelector } from "react-redux";
 import { itemActions } from "../../store/item";
 import { NavLink } from "react-router-dom";
@@ -30,7 +28,7 @@ const Navigation = () => {
     >
       <div className="nav__main">
         <div className="nav__main--logo">
-          <img src={logo} alt="Netflix logo" />
+          <img src="/img/netflix-logo.png" alt="Netflix logo" />
         </div>
         <ul>
           <NavLink to="/browse" activeClassName="nav__active">
@@ -45,7 +43,7 @@ const Navigation = () => {
         </ul>
       </div>
       <div className="nav__user">
-        <img src={avatar} alt="User avatar" />
+        <img src="/img/avatar.png" alt="User avatar" />
       </div>
     </animated.nav>
   );

@@ -16,7 +16,7 @@ const authFunc = async (url, body, method, history, auth) => {
       expires: 7,
     });
 
-    history.replace("/browse");
+    history.replace("/users");
   } catch (err) {
     console.log(err);
   }
