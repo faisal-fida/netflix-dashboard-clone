@@ -40,7 +40,7 @@ const MobileNavigation = () => {
             onClick={openSearchHandler}
           ></i>
           <div className="nav__mobile--user">
-            <img src="/img/avatar.png" alt="User avatar" />
+            <img src="/img/avatar-1.png" alt="User avatar" />
           </div>
         </div>
       </div>

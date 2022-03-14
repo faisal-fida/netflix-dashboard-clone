@@ -5,6 +5,7 @@ import { userActions } from "../../../store/user";
 import axios from "axios";
 import Cookies from "js-cookie";
 import UserAccount from "./UserAccount";
+import GoToTop from "../../../helpers/goToTop";
 
 const User = () => {
   const history = useHistory();
@@ -56,6 +57,7 @@ const User = () => {
           </ul>
         </section>
       )}
+      <GoToTop />
     </div>
   );
 };

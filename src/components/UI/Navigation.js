@@ -43,7 +43,7 @@ const Navigation = () => {
         </ul>
       </div>
       <div className="nav__user">
-        <img src="/img/avatar.png" alt="User avatar" />
+        <img src="/img/avatar-1.png" alt="User avatar" />
       </div>
     </animated.nav>
   );

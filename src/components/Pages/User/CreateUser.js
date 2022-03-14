@@ -1,12 +1,15 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import SelectAvatar from "./SelectAvatar";
 
 const CreateUser = () => {
   const history = useHistory();
   const userId = useSelector((state) => state.user.userId);
   const nameInputRef = useRef();
+  const [avatar, setAvatar] = useState("avatar-1");
+  const [openAvatarSelector, setOpenAvatarSelector] = useState(false);
 
   const goToUsersHandler = () => {
     history.goBack();
@@ -20,6 +23,7 @@ const CreateUser = () => {
       const formBody = {
         holderName: name,
         accountOwner: userId,
+        avatar: avatar,
       };
 
       const response = await axios.post(
@@ -35,6 +39,14 @@ const CreateUser = () => {
     }
   };
 
+  const openAvatarHandler = () => {
+    setOpenAvatarSelector((prevState) => !prevState);
+  };
+
+  const changeAvatarHandler = (value) => {
+    setAvatar(value);
+  };
+
   return (
     <div className="user">
       <figure className="auth__logo">
@@ -46,8 +58,8 @@ const CreateUser = () => {
           <p>Add a profile for another person watching Netflix.</p>
         </div>
         <div className="user__details">
-          <figure>
-            <img src="/img/avatar.png" alt="avatar" />
+          <figure onClick={openAvatarHandler}>
+            <img src={`/img/${avatar}.png`} alt="avatar" />
           </figure>
           <input placeholder="Name" ref={nameInputRef} />
         </div>
@@ -58,6 +70,12 @@ const CreateUser = () => {
           </button>
         </div>
       </form>
+      {openAvatarSelector && (
+        <SelectAvatar
+          changeAvatar={changeAvatarHandler}
+          closeAvatar={openAvatarHandler}
+        />
+      )}
     </div>
   );
 };

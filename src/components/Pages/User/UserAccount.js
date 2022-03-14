@@ -15,7 +15,7 @@ const UserAccount = (props) => {
   return (
     <li className="user__account" onClick={selectUserHandler}>
       <figure>
-        <img src="/img/avatar.png" alt="account" />
+        <img src={`/img/${props.user.avatar}.png`} alt="account" />
       </figure>
       <p>{props.user.holderName}</p>
     </li>
