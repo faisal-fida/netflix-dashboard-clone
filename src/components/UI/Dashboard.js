@@ -18,7 +18,7 @@ const Dashboard = (props) => {
   //     const id = Cookies.get("accountId");
   //     try {
   //       const response = await axios.get(
-  //         `http://localhost:8000/api/v1/accounts/${id}`
+  //         `${process.env.REACT_APP_SERVER}/api/v1/accounts/${id}`
   //       );
 
   //       dispatch(userActions.setUser(response.data.data.account));

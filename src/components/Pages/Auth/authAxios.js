@@ -6,7 +6,7 @@ const authFunc = async (url, body, method, history, auth) => {
     const response = await method.post(url, body);
 
     if (!auth) {
-      createAccount("http://localhost:8000/api/v1/accounts", {
+      createAccount(`${process.env.REACT_APP_SERVER}/api/v1/accounts`, {
         localId: response.data.localId,
         email: response.data.email,
       });

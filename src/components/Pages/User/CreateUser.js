@@ -23,7 +23,7 @@ const CreateUser = () => {
       };
 
       const response = await axios.post(
-        `http://localhost:8000/api/v1/users`,
+        `${process.env.REACT_APP_SERVER}/api/v1/users`,
         formBody
       );
 

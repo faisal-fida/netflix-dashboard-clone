@@ -18,7 +18,7 @@ const User = () => {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          `http://localhost:8000/api/v1/accounts/${id}`
+          `${process.env.REACT_APP_SERVER}/api/v1/accounts/${id}`
         );
 
         setUsers(response.data.data.account.users);
