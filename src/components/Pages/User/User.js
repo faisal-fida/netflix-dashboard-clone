@@ -26,7 +26,9 @@ const User = () => {
         );
 
         setAccount(response.data.data.account);
-        setUsers(response.data.data.account.users);
+        if (response.data.data.account.users.length > 0) {
+          setUsers(response.data.data.account.users);
+        }
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
