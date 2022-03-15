@@ -16,6 +16,7 @@ const User = () => {
   const id = Cookies.get("accountId");
   console.log(id);
   console.log(account);
+  console.log(users);
 
   useEffect(() => {
     const getAccount = async () => {
@@ -26,7 +27,15 @@ const User = () => {
         );
 
         setAccount(response.data.data.account);
-        setUsers(response.data.data.account.users);
+
+        const users = response.data.data.account.users;
+        console.log(users);
+
+        if (users.length > 0) {
+          console.log("users ran");
+          setUsers(response.data.data.account.users);
+        }
+
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
