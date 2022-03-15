@@ -10,20 +10,20 @@ import GoToTop from "../../../helpers/goToTop";
 const User = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getAccount = async () => {
-      const id = Cookies.get("accountId");
       try {
         setIsLoading(true);
+        const id = Cookies.get("accountId");
         const response = await axios.get(
           `${process.env.REACT_APP_SERVER}/api/v1/accounts/${id}`
         );
 
         setUsers(response.data.data.account.users);
-        dispatch(userActions.setUserId(response.data.data.account._id));
+        dispatch(userActions.setUserId(response.data.data.account.id));
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
@@ -45,7 +45,11 @@ const User = () => {
       {!isLoading && (
         <section className="user__list">
           <p className="user__heading">Who's watching?</p>
-          <ul>
+          <ul
+            className={
+              users && users.length === 0 ? "user__empty" : "user__filled"
+            }
+          >
             {users &&
               users.map((user) => <UserAccount key={user._id} user={user} />)}
             <li className="user__account" onClick={goToCreateUserHandler}>

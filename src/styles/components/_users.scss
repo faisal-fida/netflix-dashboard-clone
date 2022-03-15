@@ -24,19 +24,25 @@
     @include respond(phone) {
       top: 45%;
     }
+  }
 
-    & ul {
-      display: flex;
-      justify-content: center;
-      list-style-type: none;
+  &__filled {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
 
-      @include respond(phone) {
-        display: grid;
-        grid-template-columns: repeat(2, 12rem);
-        grid-column-gap: 2.5rem;
-        grid-row-gap: 4rem;
-      }
+    @include respond(phone) {
+      display: grid;
+      grid-template-columns: repeat(2, 12rem);
+      grid-column-gap: 2.5rem;
+      grid-row-gap: 4rem;
     }
+  }
+
+  &__empty {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
   }
 
   &__account {

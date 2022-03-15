@@ -12,9 +12,8 @@ const authFunc = async (url, body, method, history, auth) => {
       });
     }
 
-    Cookies.set("accountId", response.data.localId, {
-      expires: 7,
-    });
+    Cookies.remove("accountId");
+    Cookies.set("accountId", response.data.localId);
 
     history.replace("/users");
   } catch (err) {

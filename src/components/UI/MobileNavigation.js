@@ -7,6 +7,9 @@ import { animated, useSpring } from "@react-spring/web";
 const MobileNavigation = () => {
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.user.user);
+  console.log(user);
+
   window.addEventListener("scroll", () => {
     if (window.pageYOffset > 0) {
       dispatch(itemActions.setYOffset(window.pageYOffset));
@@ -40,7 +43,7 @@ const MobileNavigation = () => {
             onClick={openSearchHandler}
           ></i>
           <div className="nav__mobile--user">
-            <img src="/img/avatar-1.png" alt="User avatar" />
+            <img src={`/img/${user.avatar}.png`} alt="User avatar" />
           </div>
         </div>
       </div>

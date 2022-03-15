@@ -6,6 +6,7 @@ import { animated, useSpring } from "@react-spring/web";
 
 const Navigation = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
 
   window.addEventListener("scroll", () => {
     if (window.pageYOffset > 0) {
@@ -43,7 +44,7 @@ const Navigation = () => {
         </ul>
       </div>
       <div className="nav__user">
-        <img src="/img/avatar-1.png" alt="User avatar" />
+        <img src={`/img/${user.avatar}.png`} alt="User avatar" />
       </div>
     </animated.nav>
   );
