@@ -10,6 +10,7 @@ import GoToTop from "../../../helpers/goToTop";
 const User = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [account, setAccount] = useState();
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const id = Cookies.get("accountId");
@@ -22,8 +23,8 @@ const User = () => {
           `${process.env.REACT_APP_SERVER}/api/v1/accounts/${id}`
         );
 
+        setAccount(response.data.data.account);
         setUsers(response.data.data.account.users);
-        dispatch(userActions.setUserId(response.data.data.account.id));
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
@@ -31,9 +32,10 @@ const User = () => {
       }
     };
     getAccount();
-  }, [dispatch, id]);
+  }, [id]);
 
   const goToCreateUserHandler = () => {
+    dispatch(userActions.setUserId(account.id));
     history.push("/users/create");
   };
 
