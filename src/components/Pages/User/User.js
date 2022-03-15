@@ -12,12 +12,12 @@ const User = () => {
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const id = Cookies.get("accountId");
 
   useEffect(() => {
     const getAccount = async () => {
       try {
         setIsLoading(true);
-        const id = Cookies.get("accountId");
         const response = await axios.get(
           `${process.env.REACT_APP_SERVER}/api/v1/accounts/${id}`
         );
@@ -31,7 +31,7 @@ const User = () => {
       }
     };
     getAccount();
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const goToCreateUserHandler = () => {
     history.push("/users/create");

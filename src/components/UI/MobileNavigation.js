@@ -8,7 +8,6 @@ const MobileNavigation = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user.user);
-  console.log(user);
 
   window.addEventListener("scroll", () => {
     if (window.pageYOffset > 0) {
