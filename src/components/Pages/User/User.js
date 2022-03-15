@@ -14,6 +14,8 @@ const User = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const id = Cookies.get("accountId");
+  console.log(id);
+  console.log(account);
 
   useEffect(() => {
     const getAccount = async () => {

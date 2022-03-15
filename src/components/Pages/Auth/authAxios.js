@@ -12,12 +12,11 @@ const authFunc = async (url, body, method, history, auth) => {
       });
     }
 
-    Cookies.remove("accountId");
     Cookies.set("accountId", response.data.localId);
-
-    history.replace("/users");
   } catch (err) {
     console.log(err);
+  } finally {
+    history.replace("/users");
   }
 };
 
