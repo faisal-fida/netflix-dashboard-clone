@@ -23,7 +23,7 @@ const SelectAvatar = (props) => {
         <p>Change avatar:</p>
         <ul>
           {avatars.map((avatar) => (
-            <li onClick={changeAvatar}>
+            <li key={avatar} onClick={changeAvatar}>
               <img src={`/img/${avatar}.png`} alt="test" />
             </li>
           ))}

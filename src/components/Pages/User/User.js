@@ -12,27 +12,31 @@ const User = () => {
   const dispatch = useDispatch();
   const [account, setAccount] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const id = Cookies.get("accountId");
-  console.log(id);
-  console.log(account);
+  const [users, setUsers] = useState([]);
+  console.log("account", account);
 
   useEffect(() => {
     const getAccount = async () => {
       try {
         setIsLoading(true);
+        const id = Cookies.get("accountId");
         const response = await axios.get(
           `${process.env.REACT_APP_SERVER}/api/v1/accounts/${id}`
         );
 
+        console.log("response", response);
+
         setAccount(response.data.data.account);
+        setUsers(response.data.data.account.users);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
         console.log(err);
       }
     };
+
     getAccount();
-  }, [id]);
+  }, []);
 
   const goToCreateUserHandler = () => {
     dispatch(userActions.setUserId(account._id));
@@ -49,15 +53,11 @@ const User = () => {
           <p className="user__heading">Who's watching?</p>
           <ul
             className={
-              account.users && account.users.length === 0
-                ? "user__empty"
-                : "user__filled"
+              users && users.length === 0 ? "user__empty" : "user__filled"
             }
           >
-            {account.users &&
-              account.users.map((user) => (
-                <UserAccount key={user._id} user={user} />
-              ))}
+            {users &&
+              users.map((user) => <UserAccount key={user._id} user={user} />)}
             <li className="user__account" onClick={goToCreateUserHandler}>
               <figure>
                 <i className="fa-solid fa-circle-plus"></i>
