@@ -25,10 +25,8 @@ const User = () => {
           `${process.env.REACT_APP_SERVER}/api/v1/accounts/${id}`
         );
 
-        setAccount(response.data.data);
-        if (response.data.data.account.users.length > 0) {
-          setUsers(response.data.data.account.users);
-        }
+        setAccount(response.data.data.account);
+        setUsers(response.data.data.account.users);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
@@ -39,7 +37,7 @@ const User = () => {
   }, [id]);
 
   const goToCreateUserHandler = () => {
-    dispatch(userActions.setUserId(account.account._id));
+    dispatch(userActions.setUserId(account._id));
     history.push("/users/create");
   };
 
