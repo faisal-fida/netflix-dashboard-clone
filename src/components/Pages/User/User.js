@@ -11,12 +11,10 @@ const User = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [account, setAccount] = useState();
-  const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const id = Cookies.get("accountId");
   console.log(id);
   console.log(account);
-  console.log(users);
 
   useEffect(() => {
     const getAccount = async () => {
@@ -27,15 +25,6 @@ const User = () => {
         );
 
         setAccount(response.data.data.account);
-
-        const users = response.data.data.account.users;
-        console.log(users);
-
-        if (users.length > 0) {
-          console.log("users ran");
-          setUsers(response.data.data.account.users);
-        }
-
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
@@ -60,11 +49,15 @@ const User = () => {
           <p className="user__heading">Who's watching?</p>
           <ul
             className={
-              users && users.length === 0 ? "user__empty" : "user__filled"
+              account.users && account.users.length === 0
+                ? "user__empty"
+                : "user__filled"
             }
           >
-            {users &&
-              users.map((user) => <UserAccount key={user._id} user={user} />)}
+            {account.users &&
+              account.users.map((user) => (
+                <UserAccount key={user._id} user={user} />
+              ))}
             <li className="user__account" onClick={goToCreateUserHandler}>
               <figure>
                 <i className="fa-solid fa-circle-plus"></i>
