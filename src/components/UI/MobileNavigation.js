@@ -27,15 +27,19 @@ const MobileNavigation = () => {
         <div className="nav__mobile--main-logo">
           <img src="/img/netflix-logo-mobile.png" alt="Netflix logo" />
         </div>
-        <div className="nav__mobile--side">
+        {/* <div>
           <i
             className="fa-solid fa-magnifying-glass"
             onClick={openSearchHandler}
-          ></i>
-          <div className="nav__mobile--user">
-            <img src={`/img/${user.avatar}.png`} alt="User avatar" />
-          </div>
+          ></i> */}
+        <div className="nav__mobile--main-logo">
+          <img
+            className="nav__mobile--user"
+            src={`/img/${user.avatar}.png`}
+            alt="User avatar"
+          />
         </div>
+        {/* </div> */}
       </div>
       <div className="nav__mobile--links">
         <ul>
