@@ -14,9 +14,9 @@ const MobileNavigation = () => {
     x: scrollPosition > 0 ? 1 : 0.15,
   });
 
-  const openSearchHandler = () => {
-    dispatch(itemActions.setSearchToggled(true));
-  };
+  // const openSearchHandler = () => {
+  //   dispatch(itemActions.setSearchToggled(true));
+  // };
 
   return (
     <animated.nav
