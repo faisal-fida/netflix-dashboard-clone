@@ -29,6 +29,15 @@
     }
   }
 
+  &__error {
+    border: 2px solid red;
+    font-size: 1.4rem;
+    color: #fff;
+    background: rgba(248, 78, 78, 0.6);
+    padding: 1.25rem;
+    border-radius: 4px;
+  }
+
   &__form {
     padding: 6rem 7rem;
     background: rgba(0, 0, 0, 0.75);
@@ -121,5 +130,9 @@
         text-decoration: underline;
       }
     }
+  }
+
+  &__loader {
+    font-size: 1.8rem;
   }
 }

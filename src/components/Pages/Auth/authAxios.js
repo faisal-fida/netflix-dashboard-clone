@@ -1,23 +1,36 @@
-import createAccount from "../../../helpers/createAccount";
 import Cookies from "js-cookie";
+import axios from "axios";
 
-const authFunc = async (url, body, method, history, auth) => {
+const authFunc = async (
+  url,
+  body,
+  history,
+  auth,
+  setErrorFunc,
+  setIsLoading
+) => {
   try {
-    const response = await method.post(url, body);
+    setIsLoading(true);
+    const response = await axios.post(url, body);
 
     if (!auth) {
-      createAccount(`${process.env.REACT_APP_SERVER}/api/v1/accounts`, {
+      await axios.post(`${process.env.REACT_APP_SERVER}/api/v1/accounts`, {
         localId: response.data.localId,
         email: response.data.email,
       });
     }
 
-    Cookies.set("accountId", response.data.localId);
-    history.replace("/users");
+    Cookies.set("accountId", response.data.localId, { expires: 3 });
+    setIsLoading(false);
   } catch (err) {
-    console.log(err);
+    setIsLoading(false);
+    if (auth) {
+      setErrorFunc("Invalid email or password");
+    } else if (!auth) {
+      setErrorFunc("Email already exists");
+    }
   } finally {
-    window.location.reload();
+    history.replace("/users");
   }
 };
 
