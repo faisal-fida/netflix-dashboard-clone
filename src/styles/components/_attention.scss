@@ -5,6 +5,7 @@
 
   @include respond(phone) {
     max-height: 70vh;
+    margin-top: -12vh;
   }
 
   &__overlay {

@@ -1,45 +1,42 @@
 import React from "react";
-import { useSelector } from "react-redux";
-// import { itemActions } from "../../store/item";
-import { NavLink } from "react-router-dom";
-import { animated, useSpring } from "@react-spring/web";
-import useScrollPosition from "../../helpers/useScrollPosition";
+import { useDispatch, useSelector } from "react-redux";
+import { itemActions } from "../../store/item";
+import { NavLink, useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const MobileNavigation = () => {
-  // const dispatch = useDispatch();
+  const history = useHistory();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  const scrollPosition = useScrollPosition();
 
-  const { x } = useSpring({
-    x: scrollPosition > 0 ? 1 : 0.15,
-  });
+  const openSearchHandler = () => {
+    dispatch(itemActions.setSearchToggled(true));
+  };
 
-  // const openSearchHandler = () => {
-  //   dispatch(itemActions.setSearchToggled(true));
-  // };
+  const logoutTemp = () => {
+    Cookies.remove("accountId");
+    history.replace("/");
+  };
 
   return (
-    <animated.nav
-      className="nav__mobile"
-      style={{ background: x.to((x) => `rgba(0, 0, 0, ${x * 1}`) }}
-    >
+    <nav className="nav__mobile">
       <div className="nav__mobile--main">
         <div className="nav__mobile--main-logo">
           <img src="/img/netflix-logo-mobile.png" alt="Netflix logo" />
         </div>
-        {/* <div>
+        <div className="nav__mobile--side">
           <i
             className="fa-solid fa-magnifying-glass"
             onClick={openSearchHandler}
-          ></i> */}
-        <div className="nav__mobile--main-logo">
-          <img
-            className="nav__mobile--user"
-            src={`/img/${user.avatar}.png`}
-            alt="User avatar"
-          />
+          ></i>
+          <div className="nav__mobile--user">
+            <img
+              src={`/img/${user.avatar}.png`}
+              alt="User avatar"
+              onClick={logoutTemp}
+            />
+          </div>
         </div>
-        {/* </div> */}
       </div>
       <div className="nav__mobile--links">
         <ul>
@@ -54,7 +51,7 @@ const MobileNavigation = () => {
           </NavLink>
         </ul>
       </div>
-    </animated.nav>
+    </nav>
   );
 };
 
