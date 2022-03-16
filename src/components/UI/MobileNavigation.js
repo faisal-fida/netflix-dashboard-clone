@@ -1,12 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { itemActions } from "../../store/item";
+import { useSelector } from "react-redux";
+// import { itemActions } from "../../store/item";
 import { NavLink } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 import useScrollPosition from "../../helpers/useScrollPosition";
 
 const MobileNavigation = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const scrollPosition = useScrollPosition();
 
