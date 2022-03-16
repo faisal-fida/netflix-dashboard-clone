@@ -3,24 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { itemActions } from "../../store/item";
 import { NavLink } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
+import useScrollPosition from "../../helpers/useScrollPosition";
 
 const MobileNavigation = () => {
   const dispatch = useDispatch();
-
   const user = useSelector((state) => state.user.user);
-
-  window.addEventListener("scroll", () => {
-    if (window.pageYOffset > 0) {
-      dispatch(itemActions.setYOffset(window.pageYOffset));
-    } else if (window.pageYOffset === 0) {
-      dispatch(itemActions.setYOffset(window.pageYOffset));
-    }
-  });
-
-  const offset = useSelector((state) => state.item.offset);
+  const scrollPosition = useScrollPosition();
 
   const { x } = useSpring({
-    x: offset > 0 ? 1 : 0.15,
+    x: scrollPosition > 0 ? 1 : 0.15,
   });
 
   const openSearchHandler = () => {
