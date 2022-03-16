@@ -1,10 +1,12 @@
 import React, { useState, useRef } from "react";
 import authFunc from "./authAxios";
+import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 
 const AuthForm = () => {
   const history = useHistory();
+
   const [isLogin, setIsLogin] = useState("login");
   const [hasError, setHasError] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -63,6 +65,12 @@ const AuthForm = () => {
     setIsLogin((prevState) => !prevState);
   };
 
+  const signInGuestHandler = () => {
+    const encodedGuestId = btoa(process.env.REACT_APP_GUEST);
+    Cookies.set("accountId", encodedGuestId);
+    history.replace("/users");
+  };
+
   return (
     <form className="auth__form" onSubmit={submitFormHandler}>
       <section>
@@ -76,7 +84,7 @@ const AuthForm = () => {
         <div>
           <input
             className="auth__input"
-            type="text"
+            type="email"
             placeholder="Email"
             ref={emailInputRef}
           />
@@ -95,11 +103,22 @@ const AuthForm = () => {
             />
           )}
         </div>
-        <button type="submit">
-          {isLogin && !isLoading && "Sign In"}
-          {!isLogin && !isLoading && "Sign Up"}
-          {isLoading && <LoadingSpinner componentClass="auth__loader" />}
-        </button>
+        <div>
+          <button type="submit">
+            {isLogin && !isLoading && "Sign In"}
+            {!isLogin && !isLoading && "Sign Up"}
+            {isLoading && <LoadingSpinner componentClass="auth__loader" />}
+          </button>
+          {isLogin && (
+            <button
+              type="button"
+              className="auth__guest"
+              onClick={signInGuestHandler}
+            >
+              Continue as Guest
+            </button>
+          )}
+        </div>
       </section>
       <p className="auth__account-status">
         {isLogin ? "New to Netflix?" : "Already have an account?"}{" "}

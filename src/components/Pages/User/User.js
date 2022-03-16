@@ -13,18 +13,18 @@ const User = () => {
   const [account, setAccount] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
-  console.log("account", account);
 
   useEffect(() => {
     const getAccount = async () => {
       try {
         setIsLoading(true);
-        const id = Cookies.get("accountId");
-        const response = await axios.get(
-          `${process.env.REACT_APP_SERVER}/api/v1/accounts/${id}`
-        );
 
-        console.log("response", response);
+        const id = Cookies.get("accountId");
+        const decodedLocalId = atob(id);
+
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER}/api/v1/accounts/${decodedLocalId}`
+        );
 
         setAccount(response.data.data.account);
         setUsers(response.data.data.account.users);

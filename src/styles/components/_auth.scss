@@ -17,7 +17,10 @@
   }
 
   &__logo {
-    height: 15vh;
+    height: 12vh;
+    position: sticky;
+    top: 0;
+    left: 0;
 
     @include respond(phone) {
       height: 8vh;
@@ -31,11 +34,16 @@
 
   &__error {
     border: 2px solid red;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #fff;
-    background: rgba(248, 78, 78, 0.6);
+    background: rgb(223, 80, 80);
     padding: 1.25rem;
     border-radius: 4px;
+    margin-bottom: 2rem !important;
+
+    @include respond(phone) {
+      font-size: 1.8rem;
+    }
   }
 
   &__form {
@@ -126,9 +134,22 @@
       color: #fff;
       cursor: pointer;
 
+      @include respond(phone) {
+        text-decoration: underline;
+      }
+
       &:hover {
         text-decoration: underline;
       }
+    }
+  }
+
+  &__guest {
+    background: rgb(85, 85, 85) !important;
+    margin-top: 1rem;
+
+    @include respond(phone) {
+      margin-top: 1.35rem;
     }
   }
 

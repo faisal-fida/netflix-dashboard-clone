@@ -33,7 +33,7 @@
 
     @include respond(phone) {
       display: grid;
-      grid-template-columns: repeat(2, 12rem);
+      grid-template-columns: repeat(2, 11rem);
       grid-column-gap: 2.5rem;
       grid-row-gap: 4rem;
     }
@@ -48,7 +48,7 @@
   &__account {
     border: none;
     height: min-content;
-    width: 12rem;
+    width: 11rem;
     border-radius: 4px;
 
     &:hover {
@@ -71,7 +71,7 @@
     }
 
     & figure {
-      height: 12rem;
+      height: 11rem;
       width: 100%;
       border-radius: 4px;
       overflow: hidden;

@@ -20,7 +20,9 @@ const authFunc = async (
       });
     }
 
-    Cookies.set("accountId", response.data.localId, { expires: 3 });
+    const encodedLocalId = btoa(response.data.localId);
+    Cookies.set("accountId", encodedLocalId, { expires: 3 });
+
     setIsLoading(false);
   } catch (err) {
     setIsLoading(false);
