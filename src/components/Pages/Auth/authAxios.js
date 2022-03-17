@@ -23,6 +23,7 @@ const authFunc = async (
     const encodedLocalId = btoa(response.data.localId);
     Cookies.set("accountId", encodedLocalId, { expires: 3 });
 
+    history.replace("/users");
     setIsLoading(false);
   } catch (err) {
     setIsLoading(false);
@@ -31,8 +32,6 @@ const authFunc = async (
     } else if (!auth) {
       setErrorFunc("Email already exists");
     }
-  } finally {
-    history.replace("/users");
   }
 };
 
