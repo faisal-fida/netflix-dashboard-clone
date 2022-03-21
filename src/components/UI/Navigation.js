@@ -32,6 +32,11 @@ const Navigation = () => {
           <NavLink to="/media/movie" activeClassName="nav__active">
             Movies
           </NavLink>
+          {user.list.length > 0 && (
+            <NavLink to="my-list" activeClassName="nav__active">
+              My List
+            </NavLink>
+          )}
         </ul>
       </div>
       <div className="nav__user">

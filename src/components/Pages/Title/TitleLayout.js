@@ -1,6 +1,25 @@
 import React from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../../store/user";
 
 const TitleLayout = (props) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+
+  const addToListHandler = async () => {
+    try {
+      const response = await axios.patch(
+        `${process.env.REACT_APP_SERVER}/api/v1/users/${user._id}`,
+        { list: props.item }
+      );
+
+      dispatch(userActions.setUser(response.data.data.user));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="title__container">
       <section className="title__main">
@@ -34,7 +53,7 @@ const TitleLayout = (props) => {
                   Play
                 </button>
               </li>
-              <li>
+              <li onClick={addToListHandler}>
                 <i className="fa-solid fa-plus title__badge"></i>
               </li>
               <li>
@@ -56,7 +75,7 @@ const TitleLayout = (props) => {
             </div>
             <p className="title__desc--mobile">{props.item.overview}</p>
             <ul className="title__mobile-cta">
-              <li>
+              <li onClick={addToListHandler}>
                 <i className="fa-solid fa-plus"></i>
                 <p>My List</p>
               </li>

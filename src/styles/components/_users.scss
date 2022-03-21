@@ -121,6 +121,34 @@
     }
   }
 
+  &__manage-profiles {
+    text-align: center;
+    margin-top: 4rem;
+
+    & button {
+      padding: 1rem 2rem;
+      background: none;
+      border: 2px solid white;
+      color: white;
+      font-size: 1.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      letter-spacing: 0.075rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: white;
+        color: black;
+
+        @include respond(phone) {
+          background: none;
+          color: white;
+        }
+      }
+    }
+  }
+
   &__create {
     position: absolute;
     top: 50%;
@@ -323,5 +351,10 @@
         }
       }
     }
+  }
+
+  &__loader {
+    font-size: 6rem;
+    color: rgb(97, 97, 97);
   }
 }

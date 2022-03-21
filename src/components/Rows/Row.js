@@ -6,16 +6,22 @@ const Row = (props) => {
   const [titles, setTitles] = useState([]);
 
   useEffect(() => {
-    const getGenre = async () => {
-      try {
-        const response = await axios.get(props.endpoint);
-        setTitles(response.data.results);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getGenre();
-  }, [props.endpoint]);
+    if (!props.list) {
+      const getGenre = async () => {
+        try {
+          const response = await axios.get(props.endpoint);
+          setTitles(response.data.results);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getGenre();
+    }
+
+    if (props.list) {
+      setTitles(props.list);
+    }
+  }, [props.endpoint, props.list]);
 
   return (
     <Fragment>

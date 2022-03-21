@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { itemActions } from "../../store/item";
 import { NavLink, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 const MobileNavigation = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.user);
 
   const openSearchHandler = () => {
     dispatch(itemActions.setSearchToggled(true));
@@ -31,7 +31,7 @@ const MobileNavigation = () => {
           ></i>
           <div className="nav__mobile--user">
             <img
-              src={`/img/avatar-1.png`}
+              src={`/img/${user.avatar}.png`}
               alt="User avatar"
               onClick={logoutTemp}
             />

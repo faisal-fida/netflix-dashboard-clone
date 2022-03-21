@@ -23,6 +23,7 @@
     left: 0;
 
     @include respond(phone) {
+      position: relative;
       height: 8vh;
     }
 

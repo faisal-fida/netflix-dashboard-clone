@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { useSelector } from "react-redux";
 import Attention from "../Attention";
 import Row from "../../../Rows/Row";
 import { mainRequests } from "../../../../utilities/requests";
@@ -9,6 +10,8 @@ const Main = () => {
   const change = () => {
     setFade(true);
   };
+
+  const user = useSelector((state) => state.user.user);
 
   return (
     <Fragment>
@@ -23,6 +26,7 @@ const Main = () => {
           endpoint={mainRequests.netflixOriginals}
         />
         <Row title="Trending" endpoint={mainRequests.trending} />
+        {user.list.length > 0 && <Row title="My List" list={user.list} />}
         <Row
           title="Popular on Netflix"
           endpoint={mainRequests.discoverPopular}

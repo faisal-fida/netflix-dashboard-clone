@@ -19,7 +19,7 @@ const Browse = () => {
 
   return (
     <div className="browse" /* style={{ overflow: `${titleStyle}` }} */>
-      {window.innerWidth > 736 && <Navigation />}
+      <Navigation />
       <MobileNavigation />
       {!media && <Main />}
       {media === "tv" && <TV />}
