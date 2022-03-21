@@ -14,7 +14,7 @@ const User = () => {
   const [account, setAccount] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
-  const [edit, setEdit] = useState(false);
+  // const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     const getAccount = async () => {
@@ -46,7 +46,7 @@ const User = () => {
   };
 
   const manageProfilesHandler = () => {
-    setEdit(true);
+    // setEdit(true);
   };
 
   return (
