@@ -21,12 +21,14 @@ const Main = () => {
           title="Top 10 in the U.S. Today"
           endpoint={mainRequests.top10}
         />
+        {user && user.list.length > 0 && (
+          <Row title="My List" list={user.list} />
+        )}
         <Row
           title="Netflix Originals"
           endpoint={mainRequests.netflixOriginals}
         />
         <Row title="Trending" endpoint={mainRequests.trending} />
-        {user.list.length > 0 && <Row title="My List" list={user.list} />}
         <Row
           title="Popular on Netflix"
           endpoint={mainRequests.discoverPopular}

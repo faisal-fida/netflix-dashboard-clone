@@ -15,6 +15,7 @@ const MobileNavigation = () => {
 
   const logoutTemp = () => {
     Cookies.remove("accountId");
+    Cookies.remove("userId");
     history.replace("/");
   };
 

@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Button";
-import { useDispatch } from "react-redux";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { itemActions } from "../../../../../store/item";
+import { userActions } from "../../../../../store/user";
 
 const ButtonContainer = (props) => {
   const dispatch = useDispatch();
+  const [onList, setOnList] = useState(false);
+  const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (user) {
+      const match = user.list.find((item) => item.id === props.item.id);
+
+      if (match) {
+        setOnList(true);
+      } else {
+        setOnList(false);
+      }
+    }
+  }, [props.item.id, user.list, user]);
 
   const openAttentionHandler = () => {
     dispatch(itemActions.setItem(props.item));
@@ -17,13 +33,46 @@ const ButtonContainer = (props) => {
     }, 350);
   };
 
+  const addToListHandler = async () => {
+    try {
+      if (!onList) {
+        const response = await axios.patch(
+          `${process.env.REACT_APP_SERVER}/api/v1/users/${user._id}`,
+          { list: props.item }
+        );
+
+        dispatch(userActions.setUser(response.data.data.user));
+      } else if (onList) {
+        const response = await axios.patch(
+          `${process.env.REACT_APP_SERVER}/api/v1/users/${user._id}`,
+          { listId: props.item.id }
+        );
+
+        dispatch(userActions.setUser(response.data.data.user));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="attention__backdrop--info-btn">
-      <Button
-        btnClass="attention__btn--list"
-        name="My List"
-        icon="fa-solid fa-plus"
-      />
+      {!onList && (
+        <Button
+          onClick={addToListHandler}
+          btnClass="attention__btn--list"
+          name="My List"
+          icon="fa-solid fa-plus"
+        />
+      )}
+      {onList && (
+        <Button
+          onClick={addToListHandler}
+          btnClass="attention__btn--list"
+          name="My List"
+          icon="fa-solid fa-check"
+        />
+      )}
       <Button
         btnClass="attention__btn--play"
         name="Play"

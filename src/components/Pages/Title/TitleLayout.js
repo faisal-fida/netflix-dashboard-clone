@@ -1,20 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../store/user";
 
 const TitleLayout = (props) => {
   const dispatch = useDispatch();
+  const [onList, setOnList] = useState(false);
   const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (user) {
+      const match = user.list.find((item) => item.id === props.item.id);
+
+      if (match) {
+        setOnList(true);
+      } else {
+        setOnList(false);
+      }
+    }
+  }, [props.item.id, user.list, user]);
 
   const addToListHandler = async () => {
     try {
-      const response = await axios.patch(
-        `${process.env.REACT_APP_SERVER}/api/v1/users/${user._id}`,
-        { list: props.item }
-      );
+      if (!onList) {
+        const response = await axios.patch(
+          `${process.env.REACT_APP_SERVER}/api/v1/users/${user._id}`,
+          { list: props.item }
+        );
 
-      dispatch(userActions.setUser(response.data.data.user));
+        dispatch(userActions.setUser(response.data.data.user));
+      } else if (onList) {
+        const response = await axios.patch(
+          `${process.env.REACT_APP_SERVER}/api/v1/users/${user._id}`,
+          { listId: props.item.id }
+        );
+
+        dispatch(userActions.setUser(response.data.data.user));
+      }
     } catch (err) {
       console.log(err);
     }
@@ -53,9 +75,16 @@ const TitleLayout = (props) => {
                   Play
                 </button>
               </li>
-              <li onClick={addToListHandler}>
-                <i className="fa-solid fa-plus title__badge"></i>
-              </li>
+              {!onList && (
+                <li onClick={addToListHandler}>
+                  <i className="fa-solid fa-plus title__badge"></i>
+                </li>
+              )}
+              {onList && (
+                <li onClick={addToListHandler}>
+                  <i className="fa-solid fa-check title__badge"></i>
+                </li>
+              )}
               <li>
                 <i className="fa-regular fa-thumbs-up title__badge"></i>
               </li>
@@ -75,10 +104,18 @@ const TitleLayout = (props) => {
             </div>
             <p className="title__desc--mobile">{props.item.overview}</p>
             <ul className="title__mobile-cta">
-              <li onClick={addToListHandler}>
-                <i className="fa-solid fa-plus"></i>
-                <p>My List</p>
-              </li>
+              {!onList && (
+                <li onClick={addToListHandler}>
+                  <i className="fa-solid fa-plus"></i>
+                  <p>My List</p>
+                </li>
+              )}
+              {onList && (
+                <li onClick={addToListHandler}>
+                  <i className="fa-solid fa-check"></i>
+                  <p>My List</p>
+                </li>
+              )}
               <li>
                 <i className="fa-regular fa-thumbs-up"></i>
                 <p>Rate</p>
