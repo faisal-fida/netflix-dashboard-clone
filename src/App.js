@@ -8,6 +8,7 @@ import Dashboard from "./components/UI/Dashboard";
 import Title from "./components/Pages/Title/Title";
 import User from "./components/Pages/User/User";
 import CreateUser from "./components/Pages/User/CreateUser";
+import UpdateUser from "./components/Pages/User/UpdateUser";
 
 const App = () => {
   return (
@@ -23,6 +24,9 @@ const App = () => {
       </Route>
       <Route path="/users/create">
         <CreateUser />
+      </Route>
+      <Route path="/users/update">
+        <UpdateUser />
       </Route>
       <Dashboard>
         <Route path="/browse">

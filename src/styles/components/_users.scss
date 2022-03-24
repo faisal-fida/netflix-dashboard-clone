@@ -105,6 +105,24 @@
         font-size: 8rem;
         color: #808080;
       }
+
+      & div {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 40;
+
+        & i {
+          font-size: 4rem !important;
+          color: rgb(230, 230, 230);
+        }
+      }
     }
 
     & p {
@@ -174,7 +192,10 @@
         }
       }
     }
+  }
 
+  &__btns {
+    display: flex;
     & button {
       padding: 0.85rem 2.5rem;
       font-size: 1.6rem;
@@ -350,6 +371,82 @@
           }
         }
       }
+    }
+  }
+
+  &__update {
+    width: 22.5%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include respond(phone) {
+      top: 45%;
+      width: 75%;
+    }
+
+    & > * {
+      @include respond(phone) {
+        &:not(:last-child) {
+          margin-bottom: 2rem;
+        }
+      }
+    }
+
+    & p {
+      font-size: 4.6rem;
+      line-height: 1.6;
+      color: white;
+    }
+
+    &--main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    & div {
+      &:last-child {
+        margin-top: 2rem;
+      }
+    }
+
+    & figure {
+      height: 11rem;
+      width: 11rem;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+
+      & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    & input {
+      padding: 0.85rem;
+      font-size: 1.6rem;
+      width: 100%;
+      border: none;
+      border-radius: 0px;
+      background: #666666;
+      color: #fff;
+      outline: none;
+
+      &::placeholder {
+        color: #969696;
+      }
+    }
+
+    & button {
     }
   }
 

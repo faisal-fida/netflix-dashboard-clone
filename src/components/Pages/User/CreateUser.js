@@ -12,7 +12,7 @@ const CreateUser = () => {
   const [openAvatarSelector, setOpenAvatarSelector] = useState(false);
 
   const goToUsersHandler = () => {
-    history.goBack();
+    history.replace("/users");
   };
 
   const submitFormHandler = async (e) => {
@@ -63,7 +63,7 @@ const CreateUser = () => {
           </figure>
           <input placeholder="Name" ref={nameInputRef} />
         </div>
-        <div>
+        <div className="user__btns">
           <button type="submit">Continue</button>
           <button type="button" onClick={goToUsersHandler}>
             Cancel

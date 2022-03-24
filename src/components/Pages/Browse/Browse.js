@@ -1,6 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-
+import { Redirect, useParams } from "react-router-dom";
 import Navigation from "../../UI/Navigation";
 import MobileNavigation from "../../UI/MobileNavigation";
 import Main from "./Sections/Main";
@@ -10,24 +9,30 @@ import Title from "../Title/Title";
 import SimilarTitle from "../Title/SimilarTitle";
 import TitleBackdrop from "../Title/TitleBackdrop";
 import { useSelector } from "react-redux";
+import Cookies from "js-cookie";
 
 const Browse = () => {
   const { media } = useParams();
   const { item } = useSelector((state) => state.item);
-
-  // let titleStyle = item ? "hidden" : "scroll";
+  const accountId = Cookies.get("accountId");
+  const userId = Cookies.get("userId");
 
   return (
-    <div className="browse" /* style={{ overflow: `${titleStyle}` }} */>
-      <Navigation />
-      <MobileNavigation />
-      {!media && <Main />}
-      {media === "tv" && <TV />}
-      {media === "movie" && <Movie />}
-      <Title />
-      <SimilarTitle />
-      {item && <TitleBackdrop />}
-    </div>
+    <>
+      {!accountId && !userId && <Redirect to="/auth" />}
+      {accountId && userId && (
+        <div className="browse">
+          <Navigation />
+          <MobileNavigation />
+          {!media && <Main />}
+          {media === "tv" && <TV />}
+          {media === "movie" && <Movie />}
+          <Title />
+          <SimilarTitle />
+          {item && <TitleBackdrop />}
+        </div>
+      )}
+    </>
   );
 };
 

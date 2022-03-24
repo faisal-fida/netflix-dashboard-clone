@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../store/user";
 import axios from "axios";
@@ -14,15 +14,16 @@ const User = () => {
   const [account, setAccount] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
-  // const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const accountId = Cookies.get("accountId");
+  const userId = Cookies.get("userId");
 
   useEffect(() => {
     const getAccount = async () => {
       try {
         setIsLoading(true);
 
-        const id = Cookies.get("accountId");
-        const decodedLocalId = atob(id);
+        const decodedLocalId = atob(accountId);
 
         const response = await axios.get(
           `${process.env.REACT_APP_SERVER}/api/v1/accounts/${decodedLocalId}`
@@ -38,7 +39,7 @@ const User = () => {
     };
 
     getAccount();
-  }, []);
+  }, [accountId]);
 
   const goToCreateUserHandler = () => {
     dispatch(userActions.setUserId(account._id));
@@ -46,49 +47,61 @@ const User = () => {
   };
 
   const manageProfilesHandler = () => {
-    // setEdit(true);
+    setEdit((prevState) => !prevState);
+
+    if (edit) {
+      dispatch(userActions.setEditUser(false));
+    }
   };
 
   return (
-    <div className="user">
-      <figure className="auth__logo">
-        <img src="/img/netflix-logo.png" alt="netflix logo" />
-      </figure>
-      {isLoading && (
-        <section className="user__list">
-          <LoadingSpinner componentClass="user__loader" />
-        </section>
-      )}
-      {!isLoading && (
-        <section className="user__list">
-          <p className="user__heading">Who's watching?</p>
-          <ul
-            className={
-              users && users.length === 0 ? "user__empty" : "user__filled"
-            }
-          >
-            {users &&
-              users.map((user) => <UserAccount key={user._id} user={user} />)}
-            <li className="user__account" onClick={goToCreateUserHandler}>
-              <figure>
-                <i className="fa-solid fa-circle-plus"></i>
-              </figure>
-              <p>Add Profile</p>
-            </li>
-          </ul>
-          {users && users.length > 0 && (
-            <div className="user__manage-profiles">
-              <button type="button" onClick={manageProfilesHandler}>
-                {users && users.length === 1
-                  ? "Manage Profile"
-                  : "Manage Profiles"}
-              </button>
-            </div>
+    <>
+      {!accountId && <Redirect to="/auth" />}
+      {accountId && userId && <Redirect to="/browse" />}
+      {accountId && !userId && (
+        <div className="user">
+          <figure className="auth__logo">
+            <img src="/img/netflix-logo.png" alt="netflix logo" />
+          </figure>
+          {isLoading && (
+            <section className="user__list">
+              <LoadingSpinner componentClass="user__loader" />
+            </section>
           )}
-        </section>
+          {!isLoading && (
+            <section className="user__list">
+              <p className="user__heading">Who's watching?</p>
+              <ul
+                className={
+                  users && users.length === 0 ? "user__empty" : "user__filled"
+                }
+              >
+                {users &&
+                  users.map((user) => (
+                    <UserAccount key={user._id} user={user} edit={edit} />
+                  ))}
+                <li className="user__account" onClick={goToCreateUserHandler}>
+                  <figure>
+                    <i className="fa-solid fa-circle-plus"></i>
+                  </figure>
+                  <p>Add Profile</p>
+                </li>
+              </ul>
+              {users && users.length > 0 && (
+                <div className="user__manage-profiles">
+                  <button type="button" onClick={manageProfilesHandler}>
+                    {users && users.length === 1
+                      ? "Manage Profile"
+                      : "Manage Profiles"}
+                  </button>
+                </div>
+              )}
+            </section>
+          )}
+          <GoToTop />
+        </div>
       )}
-      <GoToTop />
-    </div>
+    </>
   );
 };
 
