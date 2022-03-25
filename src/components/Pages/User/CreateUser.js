@@ -26,16 +26,14 @@ const CreateUser = () => {
         avatar: avatar,
       };
 
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_SERVER}/api/v1/users`,
         formBody
       );
 
-      return response;
+      goToUsersHandler();
     } catch (err) {
       console.log(err);
-    } finally {
-      goToUsersHandler();
     }
   };
 
@@ -58,7 +56,7 @@ const CreateUser = () => {
           <p>Add a profile for another person watching Netflix.</p>
         </div>
         <div className="user__details">
-          <figure onClick={openAvatarHandler}>
+          <figure className="user__profile" onClick={openAvatarHandler}>
             <img src={`/img/${avatar}.png`} alt="avatar" />
           </figure>
           <input placeholder="Name" ref={nameInputRef} />

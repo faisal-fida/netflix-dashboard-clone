@@ -251,45 +251,6 @@
     display: flex;
     align-items: center;
 
-    & figure {
-      height: 11rem;
-      width: 11rem;
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-
-      &:hover::after {
-        content: "Change";
-        background: rgba(0, 0, 0, 0.4);
-      }
-
-      &::after {
-        content: "";
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        color: white;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-
-        @include respond(phone) {
-          content: "Change";
-          background: rgba(0, 0, 0, 0.4);
-        }
-      }
-
-      & img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-      }
-    }
-
     & input {
       margin-left: 2rem;
       padding: 0.85rem;
@@ -374,6 +335,45 @@
     }
   }
 
+  &__profile {
+    height: 11rem;
+    width: 11rem;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+
+    &:hover::after {
+      content: "Change";
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    &::after {
+      content: "";
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+
+      @include respond(phone) {
+        content: "Change";
+        background: rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    & img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
   &__update {
     width: 22.5%;
     position: absolute;
@@ -390,16 +390,14 @@
     }
 
     & > * {
-      @include respond(phone) {
-        &:not(:last-child) {
-          margin-bottom: 2rem;
-        }
+      &:not(:last-child) {
+        margin-bottom: 3rem;
       }
     }
 
     & p {
       font-size: 4.6rem;
-      line-height: 1.6;
+      line-height: 1;
       color: white;
     }
 
@@ -409,12 +407,6 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-    }
-
-    & div {
-      &:last-child {
-        margin-top: 2rem;
-      }
     }
 
     & figure {
@@ -445,8 +437,52 @@
         color: #969696;
       }
     }
+  }
 
-    & button {
+  &__delete {
+    font-size: 2.2rem !important;
+    color: #e50914 !important;
+    cursor: pointer;
+
+    @include respond(phone) {
+      font-size: 2.6rem !important;
+    }
+
+    &--container {
+      z-index: 50;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(0.2rem);
+    }
+
+    &--modal {
+      padding: 6rem 3rem;
+      background: #000;
+      border-radius: 4px;
+      border: 2px solid rgb(39, 39, 39);
+
+      @include respond(phone) {
+        width: 70%;
+      }
+
+      & p {
+        color: #fff;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        line-height: 1.2;
+      }
+
+      & div {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 
