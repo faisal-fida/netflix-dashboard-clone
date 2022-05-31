@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../../store/user";
 import SelectAvatar from "./SelectAvatar";
 import axios from "axios";
 import DeleteUserModal from "./DeleteUserModal";
 
 const UpdateUser = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.editUser);
   const [holder, setHolder] = useState(user.holderName);
   const [avatar, setAvatar] = useState(user.avatar);
   const [openAvatarSelector, setOpenAvatarSelector] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
+  // function for DOM element to return to the users page and also to reroute the user back to the users page
+  // when a new user has been created
   const goBackHandler = () => {
     history.replace("/users");
   };
 
+  // setting the state of the holder name on change of input to use in the form when it is submitted
   const updateHolderNameHandler = (e) => {
     setHolder(e.target.value);
   };
@@ -33,6 +38,7 @@ const UpdateUser = () => {
     setDeleteModal((prevState) => !prevState);
   };
 
+  // form that sumbits the updated profile of the current user
   const submitFormHandler = async (e) => {
     e.preventDefault();
 
@@ -46,6 +52,10 @@ const UpdateUser = () => {
         `${process.env.REACT_APP_SERVER}/api/v1/users/${user._id}`,
         formBody
       );
+
+      // resetting the account in redux so that upon returning to the users page the second conditional in the useEffect
+      // will be ran to display the most current state of the account
+      dispatch(userActions.setAccount(false));
 
       goBackHandler();
     } catch (err) {

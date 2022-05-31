@@ -3,9 +3,13 @@ import authFunc from "./authAxios";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 import LoadingSpinner from "../../UI/LoadingSpinner";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { userActions } from "../../../store/user";
 
 const AuthForm = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [isLogin, setIsLogin] = useState("login");
   const [hasError, setHasError] = useState();
@@ -15,9 +19,12 @@ const AuthForm = () => {
   let passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
 
+  // Function that handles the form that the user submits to the Firebase server ("firebase.google.com")
   const submitFormHandler = (e) => {
     e.preventDefault();
 
+    // checking to see if the passwords match when a new account is being created. If the conditional fails
+    // it will return the statement and render an error on the screen to the user
     if (
       !isLogin &&
       passwordInputRef.current.value !== confirmPasswordInputRef.current.value
@@ -32,11 +39,14 @@ const AuthForm = () => {
       returnSecureToken: true,
     };
 
+    // sending the user an error if they try to submit an empty form
     if (formBody.email === "" || formBody.password === "") {
       setHasError("Please fill in all fields");
       return;
     }
 
+    // Checking to see if the user is logging in to an already existing account or creating a new one.
+    // Each function is calling to a Firebase server to determine which url should be used.
     if (isLogin) {
       authFunc(
         `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_API}`,
@@ -44,7 +54,8 @@ const AuthForm = () => {
         history,
         isLogin,
         setHasError,
-        setIsLoading
+        setIsLoading,
+        dispatch
       );
     } else {
       authFunc(
@@ -53,21 +64,33 @@ const AuthForm = () => {
         history,
         isLogin,
         setHasError,
-        setIsLoading
+        setIsLoading,
+        dispatch
       );
     }
   };
 
+  // Function to change whether the user is logging in or creating an account
   const changeAuthStatus = () => {
+    // resetting all fields when the status is changed so that potential errors or previous input fields are removed
     setHasError();
     emailInputRef.current.value = "";
     passwordInputRef.current.value = "";
     setIsLogin((prevState) => !prevState);
   };
 
-  const signInGuestHandler = () => {
+  // Function to sign in the user as a guest
+  const signInGuestHandler = async () => {
+    // Encoding the guest ID we receive from our env file to protect it's credentials and set it as a cookie
     const encodedGuestId = btoa(process.env.REACT_APP_GUEST);
     Cookies.set("accountId", encodedGuestId);
+
+    // Fetch the account from our MongoDB server and set is as the account in our redux store. (client/src/store/user)
+    const account = await axios.get(
+      `${process.env.REACT_APP_SERVER}/api/v1/accounts/${process.env.REACT_APP_GUEST}`
+    );
+    dispatch(userActions.setAccount(account.data.data.account));
+
     history.replace("/users");
   };
 
