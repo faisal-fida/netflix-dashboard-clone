@@ -19,8 +19,8 @@ const SearchListItem = (props) => {
   return (
     <li className="search__list--item" onClick={getDetailsHandler}>
       <img
-        src={`https://image.tmdb.org/t/p/w154${props.item.poster_path}`}
-        alt="test"
+        src={`https://image.tmdb.org/t/p/w300${props.item.poster_path}`}
+        alt={`${props.item.name} poster`}
       />
     </li>
   );
