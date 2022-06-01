@@ -1,10 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 import useScrollPosition from "../../helpers/useScrollPosition";
+import { itemActions } from "../../store/item";
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
 
   const scrollPosition = useScrollPosition();
@@ -12,6 +14,10 @@ const Navigation = () => {
   const { x } = useSpring({
     x: scrollPosition > 0 ? 1 : 0,
   });
+
+  const openSearchHandler = () => {
+    dispatch(itemActions.setSearchToggled(true));
+  };
 
   return (
     <animated.nav
@@ -39,8 +45,14 @@ const Navigation = () => {
           )}
         </ul>
       </div>
-      <div className="nav__user">
-        <img src={`/img/${user.avatar}.png`} alt="User avatar" />
+      <div className="nav__right">
+        <i
+          className="fa-solid fa-magnifying-glass"
+          onClick={openSearchHandler}
+        ></i>
+        <div className="nav__user">
+          <img src={`/img/${user.avatar}.png`} alt="User avatar" />
+        </div>
       </div>
     </animated.nav>
   );
