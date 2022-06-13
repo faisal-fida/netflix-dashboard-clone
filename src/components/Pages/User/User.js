@@ -81,7 +81,9 @@ const User = () => {
           )}
           {!isLoading && (
             <section className="user__list">
-              <p className="user__heading">Who's watching?</p>
+              <p tabIndex="0" className="user__heading">
+                Who's watching?
+              </p>
               <ul
                 className={
                   users && users.length === 0 ? "user__empty" : "user__filled"
@@ -92,9 +94,17 @@ const User = () => {
                     <UserAccount key={user._id} user={user} edit={edit} />
                   ))}
                 {loggedInAccount.role !== "guest" && account.role !== "guest" && (
-                  <li className="user__account" onClick={goToCreateUserHandler}>
+                  <li
+                    role="button"
+                    tabIndex="0"
+                    className="user__account"
+                    onClick={goToCreateUserHandler}
+                  >
                     <figure>
-                      <i className="fa-solid fa-circle-plus"></i>
+                      <i
+                        aria-hidden="true"
+                        className="fa-solid fa-circle-plus"
+                      ></i>
                     </figure>
                     <p>Add Profile</p>
                   </li>
@@ -105,7 +115,11 @@ const User = () => {
                 loggedInAccount.role !== "guest" &&
                 account.role !== "guest" && (
                   <div className="user__manage-profiles">
-                    <button type="button" onClick={manageProfilesHandler}>
+                    <button
+                      type="button"
+                      aria-expanded={edit ? "true" : "false"}
+                      onClick={manageProfilesHandler}
+                    >
                       {users && users.length === 1
                         ? "Manage Profile"
                         : "Manage Profiles"}

@@ -106,12 +106,19 @@ const AuthForm = () => {
         )}
         <div>
           <input
+            aria-label="Email"
+            aria-required="true"
+            required
+            autoComplete="email"
             className="auth__input"
             type="email"
             placeholder="Email"
             ref={emailInputRef}
           />
           <input
+            aria-label="Password"
+            aria-required="true"
+            required
             className="auth__input"
             type="password"
             placeholder="Password"
@@ -119,6 +126,9 @@ const AuthForm = () => {
           />
           {!isLogin && (
             <input
+              aria-label="Confirm password"
+              aria-required="true"
+              required
               className="auth__input"
               type="password"
               placeholder="Confirm Password"
@@ -143,9 +153,9 @@ const AuthForm = () => {
           )}
         </div>
       </section>
-      <p className="auth__account-status">
+      <p tabIndex="0" className="auth__account-status">
         {isLogin ? "New to Netflix?" : "Already have an account?"}{" "}
-        <span onClick={changeAuthStatus}>
+        <span role="link" tabIndex="0" onClick={changeAuthStatus}>
           {isLogin ? "Sign up now." : "Login now."}
         </span>
       </p>

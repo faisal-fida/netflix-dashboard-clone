@@ -86,6 +86,7 @@ const Search = () => {
   return (
     <animated.div
       className="search"
+      tabIndex={toggled ? "0" : "-1"}
       style={{ transform: x.to((x) => `translateY(${x * 1}%)`) }}
     >
       <div className="search__container">
@@ -93,6 +94,8 @@ const Search = () => {
           <div className="search__input">
             <i className="fa-solid fa-magnifying-glass"></i>
             <input
+              tabIndex={toggled ? "0" : "-1"}
+              aria-label="Enter movie or tv show"
               placeholder="Search"
               onChange={findTitleHandler}
               ref={searchInput}
@@ -103,7 +106,7 @@ const Search = () => {
             className="search__cancel"
             onClick={closeSearchHandler}
           >
-            Cancel
+            Close
           </button>
         </form>
         {!search && <p className="search__title">Our most searched titles</p>}

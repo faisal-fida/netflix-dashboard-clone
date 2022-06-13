@@ -7,7 +7,7 @@ const SearchList = (props) => {
       {props.match.length >= 1 &&
         props.match.map((title) => {
           if (title.poster_path && title.backdrop_path && title.title) {
-            return <SearchListItem item={title} />;
+            return <SearchListItem key={title.id} item={title} />;
           }
           return null;
         })}

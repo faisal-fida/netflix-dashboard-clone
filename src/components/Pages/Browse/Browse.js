@@ -23,7 +23,7 @@ const Browse = () => {
     <>
       {!accountId && !userId && <Redirect to="/auth" />}
       {accountId && userId && (
-        <div className="browse">
+        <div tabIndex="-1" className="browse">
           <Navigation />
           <MobileNavigation />
           {!media && <Main />}

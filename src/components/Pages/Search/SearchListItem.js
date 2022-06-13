@@ -4,7 +4,7 @@ import { itemActions } from "../../../store/item";
 
 const SearchListItem = (props) => {
   const dispatch = useDispatch();
-  const { item } = useSelector((state) => state.item);
+  const { item, searchToggled } = useSelector((state) => state.item);
 
   const getDetailsHandler = () => {
     if (!item) {
@@ -17,10 +17,15 @@ const SearchListItem = (props) => {
   };
 
   return (
-    <li className="search__list--item" onClick={getDetailsHandler}>
+    <li
+      role="button"
+      tabIndex={searchToggled ? "0" : "-1"}
+      className="search__list--item"
+      onClick={getDetailsHandler}
+    >
       <img
         src={`https://image.tmdb.org/t/p/w300${props.item.poster_path}`}
-        alt={`${props.item.name} poster`}
+        alt={`${props.item.original_title}`}
       />
     </li>
   );

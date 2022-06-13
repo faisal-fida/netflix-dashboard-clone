@@ -20,12 +20,22 @@ const UserAccount = (props) => {
   };
 
   return (
-    <li className="user__account" onClick={selectUserHandler}>
+    <li
+      tabIndex="0"
+      role="link"
+      className="user__account"
+      onClick={selectUserHandler}
+    >
       <figure>
         <img src={`/img/${props.user.avatar}.png`} alt="account" />
         {props.edit && (
           <div>
-            <i className="fa-solid fa-pencil"></i>
+            <i
+              role="button"
+              tabIndex="0"
+              aria-label={`Edit ${props.user.holderName}'s Account`}
+              className="fa-solid fa-pencil"
+            ></i>
           </div>
         )}
       </figure>

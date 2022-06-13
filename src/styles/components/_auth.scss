@@ -102,7 +102,10 @@
     color: #fff;
     border-radius: 4px;
     border: none;
-    outline: none;
+
+    &:focus {
+      outline: 2px solid #585858;
+    }
 
     @include respond(phone) {
       font-size: 1.8rem;
@@ -134,13 +137,11 @@
     & span {
       color: #fff;
       cursor: pointer;
+      text-decoration: underline;
 
-      @include respond(phone) {
-        text-decoration: underline;
-      }
-
-      &:hover {
-        text-decoration: underline;
+      &:hover,
+      &:focus {
+        font-weight: bold;
       }
     }
   }

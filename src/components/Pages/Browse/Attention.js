@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import LoadingDiv from "../../UI/LoadingDiv";
 import getAttentionInfo from "../../../helpers/getAttentionInfo";
 import ButtonContainer from "./Attention/Buttons/ButtonContainer";
+import { useSelector } from "react-redux";
 
 const Attention = (props) => {
   const [attentionItem, setAttentionItem] = useState();
@@ -14,6 +15,7 @@ const Attention = (props) => {
   const [trailerVisible, setTrailerVisible] = useState(true);
   const [genres, setGenres] = useState();
   const [isLoading, setIsLoading] = useState();
+  const searchToggled = useSelector((state) => state.item.searchToggled);
 
   let genre;
   if (attentionItem && genres) {
@@ -60,7 +62,7 @@ const Attention = (props) => {
   }
 
   return (
-    <section className="attention">
+    <section tabIndex={searchToggled ? "-1" : "0"} className="attention">
       {isLoading && <LoadingDiv />}
       {!isLoading && attentionItem && (
         <Fragment>
@@ -99,9 +101,10 @@ const Attention = (props) => {
             )}
             {trailer && trailerVisible && media !== "tv" && (
               <iframe
+                tabIndex="-1"
                 allow="autoplay"
                 title={attentionItem.name}
-                src={`https://www.youtube.com/embed/${play}?autoplay=1&mute=1&end`}
+                src={`https://www.youtube.com/embed/${play}?autoplay=1&mute=1&end&disablekb=1`}
               ></iframe>
             )}
             <img
