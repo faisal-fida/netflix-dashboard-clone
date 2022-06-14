@@ -100,15 +100,18 @@ const AuthForm = () => {
         {isLogin && <p>Sign In</p>}
         {!isLogin && <p>Create Account</p>}
         {hasError && (
-          <div className="auth__error">
-            <strong>{hasError}</strong>
+          <div aria-invalid="true" className="auth__error">
+            <p>
+              <span>
+                <i className="fa-solid fa-circle-exclamation"></i>
+              </span>
+              <strong>{hasError}</strong>
+            </p>
           </div>
         )}
         <div>
           <input
             aria-label="Email"
-            aria-required="true"
-            required
             autoComplete="email"
             className="auth__input"
             type="email"
@@ -117,8 +120,6 @@ const AuthForm = () => {
           />
           <input
             aria-label="Password"
-            aria-required="true"
-            required
             className="auth__input"
             type="password"
             placeholder="Password"
@@ -127,8 +128,6 @@ const AuthForm = () => {
           {!isLogin && (
             <input
               aria-label="Confirm password"
-              aria-required="true"
-              required
               className="auth__input"
               type="password"
               placeholder="Confirm Password"

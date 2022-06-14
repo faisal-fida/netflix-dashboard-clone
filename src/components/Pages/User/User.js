@@ -94,9 +94,7 @@ const User = () => {
                     <UserAccount key={user._id} user={user} edit={edit} />
                   ))}
                 {loggedInAccount.role !== "guest" && account.role !== "guest" && (
-                  <li
-                    role="button"
-                    tabIndex="0"
+                  <button
                     className="user__account"
                     onClick={goToCreateUserHandler}
                   >
@@ -107,7 +105,7 @@ const User = () => {
                       ></i>
                     </figure>
                     <p>Add Profile</p>
-                  </li>
+                  </button>
                 )}
               </ul>
               {users &&

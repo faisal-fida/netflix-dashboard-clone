@@ -64,17 +64,19 @@ const Navigation = () => {
         </ul>
       </nav>
       <nav aria-label="Secondary" className="nav__right">
-        <i
-          role="button"
-          aria-label="Search movies or tv shows"
+        <button
+          onClick={openSearchHandler}
           tabIndex={searchToggled || item ? "-1" : "0"}
           aria-expanded={searchToggled ? "true" : "false"}
-          className="fa-solid fa-magnifying-glass"
-          onClick={openSearchHandler}
-        ></i>
-        <div className="nav__user">
+        >
+          <i
+            className="fa-solid fa-magnifying-glass"
+            aria-label="Search movies or tv shows"
+          ></i>
+        </button>
+        <button className="nav__user">
           <img src={`/img/${user.avatar}.png`} alt="User avatar" />
-        </div>
+        </button>
       </nav>
     </animated.header>
   );

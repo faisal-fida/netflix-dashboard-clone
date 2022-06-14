@@ -95,7 +95,7 @@ const Attention = (props) => {
                 <img
                   className="attention__backdrop--img"
                   src={`https://image.tmdb.org/t/p/original${attentionItem.backdrop_path}`}
-                  alt={`${attentionItem.name} backdrop`}
+                  alt={`${attentionItem.title} backdrop`}
                 />
               </animated.div>
             )}
@@ -110,12 +110,12 @@ const Attention = (props) => {
             <img
               className="attention__backdrop--img"
               src={`https://image.tmdb.org/t/p/original${attentionItem.backdrop_path}`}
-              alt={`${attentionItem.name} backdrop`}
+              alt={`${attentionItem.title} backdrop`}
             />
             <img
               className="attention__backdrop--img-mobile"
               src={`https://image.tmdb.org/t/p/original${attentionItem.poster_path}`}
-              alt={`${attentionItem.name} backdrop`}
+              alt={`${attentionItem.title} backdrop`}
             />
           </div>
         </Fragment>

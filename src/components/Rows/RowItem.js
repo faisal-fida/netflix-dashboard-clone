@@ -26,14 +26,19 @@ const RowItem = (props) => {
   };
 
   return (
-    <li className="row__list--item" onClick={getDetailsHandler}>
+    <button
+      tabIndex={item ? "-1" : "0"}
+      className="row__list--item"
+      aria-expanded={item ? "true" : "false"}
+      onClick={getDetailsHandler}
+    >
       <div className="row__list--item-img">
         <img
           src={`https://image.tmdb.org/t/p/w300${props.item.poster_path}`}
-          alt={props.item.name}
+          alt={props.item.title ? props.item.title : props.item.name}
         />
       </div>
-    </li>
+    </button>
   );
 };
 

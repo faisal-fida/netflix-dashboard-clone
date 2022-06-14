@@ -8,10 +8,12 @@ const TitleLayout = (props) => {
   const [onList, setOnList] = useState(false);
   const user = useSelector((state) => state.user.user);
 
+  // checking to see if the user has this title in their list to appropriately correspond the correct icon (check for already added, plus to add)
   useEffect(() => {
     if (user) {
       const match = user.list.find((item) => item.id === props.item.id);
 
+      // if match is true, the "onList" value will be used as a conditional to render the proper icon to the user
       if (match) {
         setOnList(true);
       } else {
@@ -20,21 +22,27 @@ const TitleLayout = (props) => {
     }
   }, [props.item.id, user.list, user]);
 
+  // function for adding or removing title from user list
   const addToListHandler = async () => {
     try {
+      // if not on list a request will be made to the server to add the title
       if (!onList) {
         const response = await axios.patch(
           `${process.env.REACT_APP_SERVER}/api/v1/users/${user._id}`,
           { list: props.item }
         );
 
+        // redux will be reset to the most current display for best UX
         dispatch(userActions.setUser(response.data.data.user));
+
+        // if on list a request will be made to the server to remove the title from the users list
       } else if (onList) {
         const response = await axios.patch(
           `${process.env.REACT_APP_SERVER}/api/v1/users/${user._id}`,
           { listId: props.item.id }
         );
 
+        // redux will be reset to the most current display for best UX
         dispatch(userActions.setUser(response.data.data.user));
       }
     } catch (err) {
@@ -46,25 +54,17 @@ const TitleLayout = (props) => {
     <div className="title__container">
       <section className="title__main">
         <div className="title__main--desktop">
-          <div className="title__main--backdrop">
-            <div className="title__close" onClick={props.close}>
-              <i
-                tabIndex="0"
-                role="button"
-                aria-label="Close details page"
-                className="fa-solid fa-xmark"
-              ></i>
-            </div>
-          </div>
           <figure className="title__figure">
-            <div className="title__close" onClick={props.close}>
+            <button className="title__close" onClick={props.close}>
               <i
-                tabIndex="0"
-                role="button"
-                aria-label="Close details page"
+                aria-label={`${
+                  props.item.title
+                    ? `Close ${props.item.title} details page`
+                    : `Close ${props.item.name} details page`
+                }`}
                 className="fa-solid fa-xmark"
               ></i>
-            </div>
+            </button>
             <img
               src={`https://image.tmdb.org/t/p/original${props.item.backdrop_path}`}
               alt={`${props.item.title} cover`}

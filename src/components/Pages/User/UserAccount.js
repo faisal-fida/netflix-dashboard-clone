@@ -20,14 +20,9 @@ const UserAccount = (props) => {
   };
 
   return (
-    <li
-      tabIndex="0"
-      role="link"
-      className="user__account"
-      onClick={selectUserHandler}
-    >
+    <button className="user__account" onClick={selectUserHandler}>
       <figure>
-        <img src={`/img/${props.user.avatar}.png`} alt="account" />
+        <img src={`/img/${props.user.avatar}.png`} alt="" />
         {props.edit && (
           <div>
             <i
@@ -40,7 +35,7 @@ const UserAccount = (props) => {
         )}
       </figure>
       <p>{props.user.holderName}</p>
-    </li>
+    </button>
   );
 };
 
