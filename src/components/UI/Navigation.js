@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 import useScrollPosition from "../../helpers/useScrollPosition";
 import { itemActions } from "../../store/item";
+import Cookies from "js-cookie";
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const { searchToggled, item } = useSelector((state) => state.item);
-
+  const [dropdownActive, setDropdownActive] = useState(false);
   const scrollPosition = useScrollPosition();
 
   const { x } = useSpring({
@@ -19,6 +20,23 @@ const Navigation = () => {
   // sets search toggled state to true when the user clicks the search icon
   const openSearchHandler = () => {
     dispatch(itemActions.setSearchToggled(true));
+  };
+
+  const openSettingsDropdown = () => {
+    setDropdownActive(true);
+  };
+
+  const closeSettingsDropdown = () => {
+    setDropdownActive(false);
+  };
+
+  const goToUsers = () => {
+    Cookies.remove("userId");
+  };
+
+  const logoutUser = () => {
+    Cookies.remove("accountId");
+    Cookies.remove("userId");
   };
 
   return (
@@ -74,9 +92,22 @@ const Navigation = () => {
             aria-label="Search movies or tv shows"
           ></i>
         </button>
-        <button className="nav__user">
-          <img src={`/img/${user.avatar}.png`} alt="User avatar" />
-        </button>
+        <div className="nav__settings">
+          <button className="nav__user" onMouseDown={openSettingsDropdown}>
+            <img src={`/img/${user.avatar}.png`} alt="User avatar" />
+          </button>
+          {dropdownActive && (
+            <ul className="nav__dropdown" onMouseLeave={closeSettingsDropdown}>
+              <p>{user.holderName}</p>
+              <NavLink onClick={goToUsers} to="users">
+                Change Profiles
+              </NavLink>
+              <NavLink onClick={logoutUser} to="auth">
+                Log Out
+              </NavLink>
+            </ul>
+          )}
+        </div>
       </nav>
     </animated.header>
   );
